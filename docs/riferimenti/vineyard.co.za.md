@@ -38,6 +38,12 @@ Pagina unica, https://www.vineyard.co.za/, viewport 1440×900, altezza documento
 - `:focus-visible` presente. `prefers-reduced-motion` presente.
 - Scroll con Lenis in classe sull’`html`. Pin spacer misurato in hero.
 
+## Struttura della pagina (misurata il 22/11/2026, viewport 1024)
+
+- Altezza 19391px, 12 sezioni. Ordine: hero con foto che si ritira (2220px), fascia salvia con un solo invito (515px, `#D2DFD9`), carosello dei quattro capitoli (999px), camere (2524px), gruppo foto (868px), recensioni su fascia salvia (1466px, `#B6C8C0`), esplora (724px), mappa (1039px), offerte (1535px), blog su carta calda (1343px, `#FFF9F3`), FAQ (812px).
+- I fondi alternano carta, carta calda e salvia. Nessun fondo scuro tranne il footer.
+- Pulsante principale: terracotta pieno, radius 66px (pillola), padding 0 27px.
+
 # Taste DNA
 
 ### La foto tiene il raggio

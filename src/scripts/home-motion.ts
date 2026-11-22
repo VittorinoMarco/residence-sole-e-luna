@@ -107,9 +107,9 @@ export function initHomeMotion() {
           scrollTrigger: {
             trigger: reel,
             start: 'top top',
-            end: '+=900',
+            end: () => `+=${Math.round(window.innerHeight * 0.9) * (photos.length - 1)}`,
             pin: true,
-            scrub: 0.6,
+            scrub: 0.5,
             invalidateOnRefresh: true,
           },
         });

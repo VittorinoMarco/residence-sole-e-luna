@@ -2,55 +2,72 @@
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CloseBand from '../../components/CloseBand.astro';
-import Missing from '../../components/Missing.astro';
-import { photos } from '../../data/site';
+import Icon from '../../components/Icon.astro';
+import { paths, photos, type IconName } from '../../data/site';
 
 const title = 'Piscina, animazione e lido | Residence Soleluna';
 const description =
   'Servizi del Residence Soleluna a Praia a Mare: piscina per gli ospiti, animazione, lido Point Break, navetta, parcheggio e spazio giochi.';
-const path = '/residence-calabria-piscina-animazione-lido';
+const path = paths.services;
 
-const blocks = [
+const blocks: {
+  id: string;
+  title: string;
+  icon: IconName;
+  paragraphs: string[];
+  href?: string;
+  link?: string;
+  photo?: { src: string; alt: string };
+}[] = [
   {
     id: 'piscina',
     title: 'Piscina',
-    text: 'Riservata agli ospiti, con chiosco bar, lettini, ombrelloni e docce.',
-    href: '/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-piscina',
-    link: 'Scheda piscina',
-    photo: photos.piscina,
-    icon: '',
+    icon: 'pool',
+    paragraphs: [
+      'Situata nella parte centrale del residence, è riservata ai soli ospiti. Ha un ampio solarium con chiosco bar, lettini, ombrelloni e docce, oltre a un tavolo da ping-pong e al calcio balilla gratuiti.',
+    ],
+    href: paths.pool,
+    link: 'La piscina',
+    photo: photos.giorno,
   },
   {
     id: 'animazione',
     title: 'Animazione',
-    text: 'Per adulti e bambini, tutti i giorni.',
+    icon: 'star',
+    paragraphs: [
+      'Tutti i giorni, per adulti e bambini, con personale professionale e mai invadente: spettacoli, miniclub, cabaret, serate giochi, karaoke, aquagym e balli di gruppo.',
+      'Per garantire una vacanza rilassante, l’animazione non c’è durante gli orari di riposo.',
+    ],
     photo: photos.animazione,
-    icon: '/images/icone/Residence-Praia-Mare-animazione.png',
   },
   {
     id: 'lido',
-    title: 'Lido e navetta',
-    text: 'Lido convenzionato Point Break. Navetta gratuita per la spiaggia: orari da riconfermare.',
-    href: '/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-lido-navetta',
-    link: 'Scheda lido e navetta',
+    title: 'Lido convenzionato e navetta',
+    icon: 'umbrella',
+    paragraphs: [
+      'Il servizio spiaggia è in convenzione con il lido Point Break, sulla spiaggia di Praia a Mare. Una navetta gratuita porta alla spiaggia e riporta al residence: tutti i giorni dalle 9.00 alle 13.00 e dalle 15.30 alle 19.30, ogni 30 minuti.',
+    ],
+    href: paths.beach,
+    link: 'Lido e navetta',
     photo: photos.lido,
-    icon: '/images/icone/Residence-Praia-Mare-lido-convenzionato.png',
   },
   {
     id: 'giochi',
-    title: 'Giochi e barbecue',
-    text: 'Nel residence c’è uno spazio giochi. I dettagli su giochi e barbecue non sono ancora stati riletti dalla pagina attuale.',
-    photo: undefined,
-    icon: '',
+    title: 'Area giochi e barbecue',
+    icon: 'flame',
+    paragraphs: [
+      'Un’area giochi attrezzata con altalene, dondoli e scivoli, riservata ai più piccoli. Un’area con tre barbecue, gazebo, tavoli e sedie, e un chiosco bar, per le serate in compagnia.',
+    ],
   },
   {
     id: 'parcheggio',
     title: 'Parcheggio e lavanderia',
-    text: 'Parcheggio interno con telecomando per il cancello. In menu la lavanderia è indicata come self-service.',
-    href: '/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-parcheggio-privato-lavanderia',
-    link: 'Scheda parcheggio e lavanderia',
-    photo: undefined,
-    icon: '/images/icone/Residence-Praia-Mare-parcheggio.png',
+    icon: 'car',
+    paragraphs: [
+      'All’arrivo, con le chiavi dell’appartamento, ogni ospite riceve un telecomando per il cancello carrabile e parcheggia l’auto all’interno del residence. C’è una lavanderia self-service a gettoni, con asse e ferro da stiro.',
+    ],
+    href: paths.parking,
+    link: 'Parcheggio e lavanderia',
   },
 ];
 ---
@@ -58,39 +75,45 @@ const blocks = [
 <Base title={title} description={description} path={path}>
   <PageHero
     title="Servizi"
-    lede="Piscina, animazione, lido, navetta, parcheggio e spazio giochi."
-    tone="cielo"
+    lede="Piscina, animazione, lido, navetta, parcheggio e area giochi: quello che c’è nel residence e intorno, per una vacanza di qualità."
+    tone="mist"
     crumbs={[
       { href: '/', label: 'Home' },
       { label: 'Servizi' },
     ]}
-    photo={photos.animazione}
+    photo={photos.giorno}
   />
-  <section class="stack">
+
+  <section class="section">
     <div class="wrap">
-      <div class="card-grid">
-        {
-          blocks.map((block) => (
-            <article class="info-card" id={block.id}>
-              {block.photo && (
-                <img src={block.photo.src} alt={block.photo.alt} />
-              )}
-              <div>
-                {block.icon && <img class="fact-icon" src={block.icon} alt="" width="40" height="40" />}
-                <h2>{block.title}</h2>
-                <p>{block.text}</p>
-                {block.href && block.link && (
-                  <p>
-                    <a href={block.href}>{block.link}</a>
-                  </p>
-                )}
+      {
+        blocks.map((block, index) => (
+          <article
+            id={block.id}
+            class:list={['service-row', 'reveal', index % 2 === 1 && 'flip', !block.photo && 'no-photo']}
+          >
+            <div>
+              <Icon name={block.icon} />
+              <h2>{block.title}</h2>
+              <div class="prose">
+                {block.paragraphs.map((text) => <p>{text}</p>)}
               </div>
-            </article>
-          ))
-        }
-      </div>
-      <Missing subject="le pagine dei servizi" />
+              {block.href && block.link && (
+                <p class="actions">
+                  <a class="btn btn-ghost" href={block.href}>{block.link}</a>
+                </p>
+              )}
+            </div>
+            {block.photo && (
+              <div class="mask mask-soft">
+                <img src={block.photo.src} alt={block.photo.alt} loading="lazy" />
+              </div>
+            )}
+          </article>
+        ))
+      }
     </div>
   </section>
+
   <CloseBand />
 </Base>

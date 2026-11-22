@@ -2,30 +2,46 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CloseBand from '../components/CloseBand.astro';
-import Missing from '../components/Missing.astro';
+import { activities, paths, photos } from '../data/site';
 
-const path = '/praia-a-mare-cosa-fare-cosa-vedere';
+const path = paths.activities;
 ---
 
 <Base
-  title="Cosa vedere a Praia a Mare | Residence Soleluna"
-  description="Cosa vedere intorno al Residence Soleluna, a Praia a Mare. Il testo della pagina attuale non è ancora stato ricopiato."
+  title="Cosa fare a Praia a Mare: attività | Residence Soleluna"
+  description="Rafting, parapendio, quad e diving a Praia a Mare: il Residence Soleluna è convenzionato con centri sportivi esterni."
   path={path}
 >
   <PageHero
-    title="Cosa vedere"
-    lede="Praia a Mare è sulla costa tirrenica calabrese, sul golfo di Policastro. Il residence dista circa 1 km dal centro e dalla spiaggia."
-    tone="paper"
+    title="Cosa fare a Praia a Mare"
+    lede="Il residence è convenzionato con centri sportivi esterni per rafting, parapendio, quad, diving e scuola sub."
+    tone="mist"
     crumbs={[
       { href: '/', label: 'Home' },
-      { href: '/praia-a-mare-cosa-fare', label: 'Praia a Mare' },
-      { label: 'Cosa vedere' },
+      { href: paths.town, label: 'Praia a Mare' },
+      { label: 'Attività' },
     ]}
+    photo={photos.golfo}
   />
-  <section class="stack">
+
+  <section class="section">
     <div class="wrap">
-      <Missing subject="la pagina cosa vedere" />
+      <ul class="cards">
+        {
+          activities.map((activity) => (
+            <li class="card reveal">
+              <h2>{activity.title}</h2>
+              <p>{activity.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="note" style="margin-top: 24px">
+        Per prenotare un’attività chiedi al residence: <a href={`${paths.contact}#preventivo`}>scrivici</a> o chiama il
+        <a href="tel:+390985779029">0985 779029</a>.
+      </p>
     </div>
   </section>
+
   <CloseBand />
 </Base>

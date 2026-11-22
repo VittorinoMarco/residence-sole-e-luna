@@ -10,48 +10,56 @@ Cosa ho cambiato rispetto al default da hotel: niente foglio crema, niente terra
 
 | Nome | Hex | Uso |
 | --- | --- | --- |
-| Inchiostro | `#00194C` | Titoli, fascia preventivo, footer, testo sui pulsanti oro |
-| Oro | `#F9C043` | Pulsante principale, la parola Sole |
-| Mare | `#1D65AC` | Pulsante secondario, la parola Luna, link |
-| Carta | `#F7F8FC` | Fondo pagina e header |
-| Cielo | `#F2FBFF` | Una fascia alternata, non tutte |
-| Testo | `#3F4654` | Corpo |
+| Inchiostro | `#00194C` | Titoli, footer, fascia di chiusura, testo sui pulsanti oro |
+| Oro | `#F9C043` | Pulsante principale. Mai testo sul chiaro (contrasto 1,6:1) |
+| Mare | `#1D65AC` | Pulsante secondario, link, icone, la parola Luna |
+| Carta | `#FBF8F2` | Fondo pagina e header. Calda, non più `#F7F8FC` |
+| Sabbia | `#F1E9DA` | Fasce alternate: preventivo, pagine appartamenti e Praia |
+| Cielo | `#E6F0F4` | Fascia Praia a Mare e hero dei servizi |
+| Testo | `#3A4254` | Corpo |
 
-Selezione testo: fondo `#F9C043`, testo `#00194C`. Focus: anello `2px` `#1D65AC` con offset `3px`, solo `:focus-visible`.
+Selezione testo: fondo oro, testo inchiostro. Focus: anello `2px` Mare, solo `:focus-visible`. I fondi alternano carta, sabbia e cielo come vineyard alterna carta e salvia; l'inchiostro è solo footer e fascia di chiusura.
 
 ## Font
 
-- Display: [Tenor Sans](https://fonts.google.com/specimen/Tenor+Sans), peso 400. Fa il ruolo della Optima del riferimento (svasato, un solo peso) senza usare Optima.
-- Corpo e UI: [Be Vietnam Pro](https://fonts.google.com/specimen/Be+Vietnam+Pro), 400 e 500. I pulsanti 600.
-
-Non Roboto, non Inter, non il slab nero del template.
+- Display: Tenor Sans 400, titoli e parole di capitolo. Fa il ruolo della Optima del riferimento.
+- Corpo e UI: Be Vietnam Pro 400 (corpo), 500 (etichette, pulsanti).
 
 ## Scala
 
-Corpo 18px / 500, line-height 1.6, misura massima 65ch. Sopracciglio solo nel hero: 13px, letter-spacing 0.08em, maiuscolo, colore Mare. Titolo di pagina: Tenor Sans 40px mobile, 64px da 768px, peso 400, line-height 1.05, letter-spacing non sotto −0.03em. Parola di capitolo: Tenor Sans, `clamp(64px, 12vw, 120px)`, peso 400, colore carta o inchiostro a seconda della foto. Non sopra i 6rem se il viewport è sotto i 768px: lì il clamp resta intorno ai 64px.
+Corpo 17px / 400, line-height 1.65, colonna 38rem. Lede 18-21px. H1 di pagina `clamp(44px, 8vw, 88px)`, H2 `clamp(36px, 4.8vw, 64px)`, H3 `clamp(26px, 2.6vw, 34px)`, tutti Tenor Sans con letter-spacing −0.02em e line-height ~1. Parola di capitolo `clamp(72px, 8.4vw, 120px)`.
 
 ## Spazi
 
-Base 8px. Scala: 8, 16, 24, 40, 64, 96. Padding di sezione 64px mobile, 96px da 1024px. Più spazio sopra un titolo che sotto. Colonna di testo 38rem. Capitolo fotografico: altezza 100svh, padding 0. Header 72px.
+Sezioni 72px mobile, 120px da 1024px. Gutter 24px mobile, 40px da 768px. Contenitore 1200px. Header 76px mobile, 88px da 768px.
 
-## Componenti
+## Forme
 
-- Pulsante principale: fondo Oro, testo Inchiostro, radius 40px, padding 14px 28px, altezza minima 48px. `:active` con `transform: scale(0.97)`.
-- Capitolo in home: foto a tutta lastra che, allo scroll, si ritira fino a un riquadro 208×208 centrato (angoli netti). Sotto resta il titolo. Poi una riga di icone, poi la foto a tutta lastra con una parola grande (109px, vicine a opacità 0,5) e una fila di tre foto rettangolari, radius 16px.
-- Pulsante: radius 40px. Il link sul capitolo, quando il motion è spento, è una pillola vuota.
-- Header: Carta, logo a sinistra, voci, poi il pulsante oro.
-- Pagine interne: foto in una maschera con radius ampio, accanto al testo.
-- Appartamenti in home: tre schede affiancate, foto rettangolare sopra e testo sotto. Gli interni non ci sono: si usa l’esterno, con la nota. Ospiti: quattro schede con nome e fonte, senza testo della recensione.
-- Recensioni: due colonne di testo reale, fonte sotto, niente stelle aggregate.
-- Foto: quelle del sito attuale (piscina, golfo, lido, animazione) e le icone PNG già pubblicate. Niente foto di ospiti. Dove manca il file resta la didascalia.
-- Ombra: una sola, `0 8px 24px rgba(0, 25, 76, 0.08)`, su menu e pannello aperto. Le foto non hanno ombra.
+- Pulsanti: pillola radius 40px, minimo 52px. Tre varianti: oro pieno, contorno inchiostro, contorno bianco sulle foto. Mare solo come secondario.
+- Foto: tre maschere. **Stadio** (radius 300px, cerchio negli hero interni) per i blocchi principali; **arco** (`999px 999px 20px 20px`) per le tre tipologie di appartamento; **morbida** (20px) per tutto il resto. Il raggio sta sul contenitore, le `img` restano a 0.
+- Schede: fondo bianco, radius 24px, nessun bordo. Form: scheda bianca radius 28px, campi radius 14px.
+- Ombra: una sola, `0 8px 24px rgba(0, 25, 76, 0.08)`, sul form.
+
+## Componenti e struttura della home
+
+1. Apertura: foto del golfo a tutta lastra che si ritira in un riquadro 208×208, poi titolo, testo e due pulsanti (invariata).
+2. Quattro fatti in fila con icone al tratto (piscina, animazione, navetta, parcheggio).
+3. Blocco «Case vacanze con piscina»: foto a stadio + testo + due pulsanti.
+4. Capitoli a schermo pieno, bloccati allo scroll: Piscina, Sera, Lido, Casa. La parola grande scorre al centro, in basso una frase vera e un pulsante.
+5. Appartamenti: tre archi con le foto degli interni.
+6. Praia a Mare e dintorni (fascia cielo): testo e lista di sei luoghi in Tenor Sans.
+7. Preventivo (fascia sabbia): telefoni grandi e form in scheda bianca.
+8. Footer inchiostro con il nome grande.
+
+Pagine interne: hero con breadcrumb, titolo, testo e foto in cerchio; poi blocchi a due colonne alternati, schede, galleria; chiusura con fascia inchiostro e telefono.
 
 ## Motion
 
 Un momento per pagina. In home la foto del golfo segue la curva misurata su vineyard (larghezza da 1440 a 208 in 1467px di scroll, easing a tratti lineari sui campioni). Da 768px in su. Sotto, e con reduced-motion, la foto resta a tutta altezza e i capitoli scorrono uno sotto l’altro.
 
 - UI (hover, pressione, menu): `cubic-bezier(0.23, 1, 0.32, 1)`, sotto i 300ms. Pressione 140ms. Mai `ease-in`. Mai `transition: all`.
-- Reveal di sezione, una volta: `cubic-bezier(0.19, 1, 0.22, 1)`, 800ms, solo `opacity` e `transform`.
+- Reveal allo scroll, una volta: `cubic-bezier(0.19, 1, 0.22, 1)`, 800ms, solo `opacity` e `transform`, con IntersectionObserver (`src/scripts/reveal.ts`). Gli elementi già in vista non si nascondono mai.
+- Capitoli: pin per `0,9 × altezza finestra` di scroll a capitolo, dissolvenza della foto e scorrimento della parola.
 - Zoom e scroll orizzontale: legati alla posizione di scroll, non a un timer.
 - GSAP e ScrollTrigger importati solo nelle pagine che li usano.
 - Niente Lenis in questa fase: lo smooth scroll si aggiunge solo se una misura dice che l’INP regge.
@@ -82,11 +90,11 @@ Le altre pagine ripetono header, un hero più basso, il testo migrato e una sola
 
 ## Coerenza
 
-Ovunque: Tenor Sans solo per i titoli, Be Vietnam Pro per il resto, oro solo sul pulsante e sulla parola Sole, radius 0 sui pulsanti, un’ombra sola, un easing di interfaccia e uno di reveal.
+Ovunque: Tenor Sans solo per i titoli, Be Vietnam Pro per il resto, oro solo sul pulsante, pillola 40px su tutti i pulsanti, tre maschere foto, un’ombra sola, un easing di interfaccia e uno di reveal.
 
 ## Pattern vietati
 
-Card uguali con icona, eyebrow su ogni titolo, numeri 01 02 03, gradienti, vetro, blur decorativo, testo tutto centrato, frecce su ogni link, contatori, markup recensioni, foto stock, blu `#1953FF`.
+Card uguali con icona, eyebrow su ogni titolo, numeri 01 02 03, gradienti decorativi (resta solo il velo scuro sotto il testo sulle foto), vetro, blur decorativo, testo tutto centrato, frecce su ogni link, contatori, markup recensioni, foto stock, blu `#1953FF`.
 
 ## Due direzioni non scelte
 

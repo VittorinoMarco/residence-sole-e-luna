@@ -38,5 +38,77 @@
     "pagina": "/",
     "alt": "",
     "diritti": "da verificare, riprese dal sito attuale"
+  },
+  {
+    "file": "residence/head.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/02-Residence/residence-sole-luna-head-1.jpg",
+    "soggetto": "Piscina e appartamenti, monti sullo sfondo",
+    "pagina": "/residence-case-vacanze-praia-a-mare",
+    "alt": "Piscina e appartamenti del Residence Soleluna visti dall’alto, con i monti sullo sfondo",
+    "diritti": "da verificare, ripresa dal sito attuale; bassa risoluzione, da sostituire con gli originali"
+  },
+  {
+    "file": "residence/case-vacanze.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/02-Residence/Residence-Praia-Mare-Case-Vacanze-01.jpg",
+    "soggetto": "Palazzina con tende da sole",
+    "pagina": "/residence-case-vacanze-praia-a-mare",
+    "alt": "Palazzina degli appartamenti con tende da sole bianche e blu",
+    "diritti": "da verificare, ripresa dal sito attuale; bassa risoluzione, da sostituire con gli originali"
+  },
+  {
+    "file": "residence/apt-1.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/02-Residence/Residence-Praia-Mare-Apt-01.jpg",
+    "soggetto": "Soggiorno-cucina arancione (bilocale, trilocale, quadrilocale)",
+    "pagina": "/ e /residence-case-vacanze-praia-a-mare/appartamenti-soleluna",
+    "alt": "Soggiorno-cucina con cucina arancione",
+    "diritti": "da verificare, ripresa dal sito attuale; bassa risoluzione, da sostituire con gli originali"
+  },
+  {
+    "file": "residence/apt-2.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/02-Residence/Residence-Praia-Mare-Apt-02.jpg",
+    "soggetto": "Soggiorno-cucina blu (bilocale, trilocale, quadrilocale)",
+    "pagina": "/ e /residence-case-vacanze-praia-a-mare/appartamenti-soleluna",
+    "alt": "Soggiorno-cucina con cucina blu",
+    "diritti": "da verificare, ripresa dal sito attuale; bassa risoluzione, da sostituire con gli originali"
+  },
+  {
+    "file": "residence/apt-3.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/02-Residence/Residence-Praia-Mare-Apt-03.jpg",
+    "soggetto": "Soggiorno-cucina verde (bilocale, trilocale, quadrilocale)",
+    "pagina": "/ e /residence-case-vacanze-praia-a-mare/appartamenti-soleluna",
+    "alt": "Soggiorno-cucina con cucina verde",
+    "diritti": "da verificare, ripresa dal sito attuale; bassa risoluzione, da sostituire con gli originali"
+  },
+  {
+    "file": "appartamenti/galleria-1..6.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/03-Appartamenti/Residence-Praia-Mare-Apt-Galley-01..06.jpg",
+    "soggetto": "Interni: cucine, camere, bagno",
+    "pagina": "/residence-case-vacanze-praia-a-mare/appartamenti-soleluna",
+    "alt": "vedi src/data/site.ts",
+    "diritti": "da verificare, ripresa dal sito attuale; bassa risoluzione, da sostituire con gli originali"
+  },
+  {
+    "file": "appartamenti/bilo.jpg, trilocale.jpg, quadri.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/03-Appartamenti/*-article.jpg",
+    "soggetto": "Miniature 368 px (non usate)",
+    "pagina": "-",
+    "alt": "",
+    "diritti": "da verificare, ripresa dal sito attuale; bassa risoluzione, da sostituire con gli originali"
+  },
+  {
+    "file": "piscina/piscina-1..6.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/04-Piscina/Residence-Praia-Piscina-1..6.jpg",
+    "soggetto": "Piscina di sera",
+    "pagina": "/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-piscina",
+    "alt": "vedi src/data/site.ts",
+    "diritti": "da verificare, ripresa dal sito attuale; bassa risoluzione, da sostituire con gli originali"
+  },
+  {
+    "file": "piscina/promo-1..3.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/04-Piscina/Residence-Praia-Mare-Piscina-Promo-01..03.jpg",
+    "soggetto": "Piscina di giorno",
+    "pagina": "/ (capitolo Piscina) e pagina piscina",
+    "alt": "vedi src/data/site.ts",
+    "diritti": "da verificare, ripresa dal sito attuale; bassa risoluzione, da sostituire con gli originali"
   }
 ]

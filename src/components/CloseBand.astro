@@ -1,16 +1,16 @@
 ---
-import { site } from '../data/site';
+import { paths, site } from '../data/site';
 ---
 
-<section class="band">
-  <div class="wrap band-inner">
-    <h2>Per info e prenotazioni</h2>
-    <p>
+<section class="close-band" aria-labelledby="chiusura-titolo">
+  <div class="wrap close-inner">
+    <div>
+      <h2 id="chiusura-titolo">Per info e prenotazioni</h2>
       <a class="phone-link" href={site.phones[0].href}>{site.phones[0].label}</a>
-    </p>
+    </div>
     <p class="actions">
-      <a class="btn" href="/contatti#preventivo">Richiedi un preventivo</a>
-      <a class="btn btn-sea" href={`mailto:${site.email}`}>Scrivi una email</a>
+      <a class="btn" href={`${paths.contact}#preventivo`}>Richiedi un preventivo</a>
+      <a class="btn btn-light" href={`mailto:${site.email}`}>Scrivi una email</a>
     </p>
   </div>
 </section>

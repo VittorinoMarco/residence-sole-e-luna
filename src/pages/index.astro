@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import QuoteForm from '../components/QuoteForm.astro';
-import { apartments, chapters, facts, homeIntro, photos, site } from '../data/site';
+import { apartments, chapters, facts, homeIntro, paths, photos, places, site } from '../data/site';
 
 const title = 'Residence Soleluna a Praia a Mare | Piscina, lido e appartamenti';
 const description =
@@ -23,13 +24,15 @@ const jsonLd = {
     addressCountry: 'IT',
   },
 };
+
+const slug = (value: string) => value.toLowerCase().replace(/\s+/g, '-');
 ---
 
 <Base title={title} description={description} path="/" jsonLd={jsonLd}>
   <section class="opening" data-shrink>
     <div class="opening-sticky">
       <div class="shrink-frame" data-shrink-frame>
-        <img src={photos.golfo.src} alt={photos.golfo.alt} />
+        <img src={photos.golfo.src} alt={photos.golfo.alt} fetchpriority="high" />
       </div>
       <div class="intro" data-intro>
         <p class="kicker">Residence a Praia a Mare</p>
@@ -39,36 +42,60 @@ const jsonLd = {
         <p class="lede">{homeIntro}</p>
         <p class="actions">
           <a class="btn" href="#preventivo">Richiedi un preventivo</a>
-          <a class="btn btn-line" href={site.phones[0].href}>Chiama</a>
+          <a class="btn btn-ghost" href={site.phones[0].href}>Chiama</a>
         </p>
       </div>
     </div>
   </section>
 
   <section class="facts" aria-label="Nel residence">
-    <dl class="fact-list fact-row">
-      {
-        facts.map((fact) => (
-          <div>
-            {fact.icon && <img class="fact-icon" src={fact.icon} alt="" width="40" height="40" />}
-            <dt>{fact.title}</dt>
-            <dd>{fact.text}</dd>
-          </div>
-        ))
-      }
-    </dl>
+    <div class="wrap">
+      <ul class="fact-list">
+        {
+          facts.map((fact) => (
+            <li class="reveal">
+              <Icon name={fact.icon} />
+              <h2>{fact.title}</h2>
+              <p>{fact.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </section>
 
-  <section class="reel" data-reel aria-label="Piscina, lido e casa">
+  <section class="section">
+    <div class="wrap split">
+      <div class="mask mask-stadium reveal">
+        <img src={photos.panorama.src} alt={photos.panorama.alt} loading="lazy" />
+      </div>
+      <div class="reveal">
+        <h2>Case vacanze con piscina, sul golfo di Policastro</h2>
+        <div class="prose">
+          <p>
+            Trentasei appartamenti arredati intorno alla piscina e al solarium, in una posizione tranquilla e panoramica.
+            Il centro di Praia a Mare e la spiaggia sono a circa 1 km.
+          </p>
+          <p>Per famiglie, coppie e gruppi di amici, con parcheggio interno e animazione tutti i giorni.</p>
+        </div>
+        <p class="actions">
+          <a class="btn btn-ghost" href={paths.residence}>Il residence</a>
+          <a class="btn btn-ghost" href={paths.apartments}>Gli appartamenti</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reel" data-reel aria-label="Piscina, sera, lido e casa">
     {
       chapters.map((chapter) => (
-        <article class="reel-photo" data-reel-photo id={chapter.id}>
-          <img src={chapter.photo.src} alt={chapter.photo.alt} />
+        <article class="reel-photo" data-reel-photo id={chapter.id} style={`--focus:${chapter.focus}`}>
+          <img src={chapter.photo.src} alt={chapter.photo.alt} loading="lazy" />
           <div class="reel-copy">
-            <h2 class="reel-local">{chapter.word}</h2>
+            <h2>{chapter.word}</h2>
             <p>{chapter.text}</p>
-            <p>
-              <a class="btn btn-line" href={chapter.href}>{chapter.link}</a>
+            <p class="actions">
+              <a class="btn btn-light" href={chapter.href}>{chapter.link}</a>
             </p>
           </div>
         </article>
@@ -79,94 +106,78 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="trio" aria-label="Piscina, lido e golfo">
-    <img src={photos.piscina.src} alt={photos.piscina.alt} />
-    <img src={photos.lido.src} alt={photos.lido.alt} />
-    <img src={photos.golfo.src} alt={photos.golfo.alt} />
-  </section>
-
-  <section class="stays" aria-label="Tipi di appartamento">
+  <section class="section" aria-labelledby="titolo-appartamenti">
     <div class="wrap">
-      <header class="stays-head">
-        <h2>Gli appartamenti</h2>
-        <p>Gli interni non sono tra le foto del sito attuale. Le schede mostrano l’esterno, la piscina e il golfo.</p>
+      <header class="section-head reveal">
+        <h2 id="titolo-appartamenti">Gli appartamenti</h2>
+        <p class="lede">Bilocali, trilocali e quadrilocali, con cucina, aria condizionata nel soggiorno e terrazzo attrezzato.</p>
       </header>
-      <div class="stay-grid">
+      <ul class="stay-grid">
         {
-          apartments.map((item, index) => {
-            const shot = [photos.piscina, photos.lido, photos.golfo][index];
-            return (
-              <article class="stay-card">
-                <img src={shot.src} alt={shot.alt} />
-                <div>
-                  <h3>{item.title}</h3>
-                  <span class="beds">{item.beds}</span>
-                  <p>{item.summary}</p>
-                  <a href="/residence-case-vacanze-praia-a-mare/appartamenti-soleluna">Scheda completa</a>
-                </div>
-              </article>
-            );
-          })
+          apartments.map((item) => (
+            <li class="stay-card reveal">
+              <div class="mask mask-arch">
+                <img src={item.photo.src} alt={item.photo.alt} loading="lazy" />
+              </div>
+              <div>
+                <span class="beds">{item.beds}</span>
+                <h3>{item.title}</h3>
+                <p>{item.summary}</p>
+                <a class="more" href={paths.apartments}>Scheda completa</a>
+              </div>
+            </li>
+          ))
         }
-      </div>
-    </div>
-  </section>
-
-  <section class="guests">
-    <div class="wrap">
-      <header class="stays-head">
-        <h2>I nostri ospiti</h2>
-        <p>Quattro recensioni si pubblicano solo dopo il consenso del residence. Nessun punteggio aggregato.</p>
-      </header>
-      <ul class="guest-grid">
-        <li>
-          <span>Google</span>
-          <strong>Adele Vanacore</strong>
-          <p>In attesa del consenso.</p>
-        </li>
-        <li>
-          <span>Google</span>
-          <strong>Rosaria De Luca</strong>
-          <p>In attesa del consenso.</p>
-        </li>
-        <li>
-          <span>TripAdvisor</span>
-          <strong>Stella A.</strong>
-          <p>In attesa del consenso.</p>
-        </li>
-        <li>
-          <span>TripAdvisor</span>
-          <strong>Pasquale e Enza</strong>
-          <p>In attesa del consenso.</p>
-        </li>
       </ul>
     </div>
   </section>
 
-  <section class="praia">
-    <div class="wrap praia-grid">
-      <div>
-        <h2>Praia a Mare</h2>
-        <p class="lede">
-          Il residence dista circa 1 km dal centro e dalla spiaggia di sabbia e ghiaia.
-        </p>
+  <section class="section section-mist" aria-labelledby="titolo-praia">
+    <div class="wrap split">
+      <div class="reveal">
+        <h2 id="titolo-praia">Praia a Mare e dintorni</h2>
+        <div class="prose">
+          <p>
+            Il mare incontaminato, l’Isola Dino con le sue grotte, il Viale delle Libertà e più di 4 km di lungomare.
+            Dal residence si vede il golfo e, dall’alto, l’Isola Dino.
+          </p>
+        </div>
         <p class="actions">
-          <a class="btn btn-sea" href="/praia-a-mare-cosa-fare">Cosa fare</a>
-          <a href="/praia-a-mare-cosa-fare-cosa-vedere">Cosa vedere</a>
+          <a class="btn btn-sea" href={paths.town}>Cosa vedere</a>
+          <a class="btn btn-ghost" href={paths.activities}>Attività</a>
         </p>
       </div>
-      <img src={photos.lido.src} alt={photos.lido.alt} />
+      <ul class="town-list reveal">
+        {
+          places.map((place) => (
+            <li>
+              <a href={`${paths.town}#${slug(place.name)}`}>{place.name}</a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 
-  <section class="band" id="preventivo">
-    <div class="wrap band-inner">
-      <h2>Per info e prenotazioni</h2>
-      <p>
-        <a class="phone-link" href={site.phones[0].href}>{site.phones[0].label}</a>
-        <a class="phone-link" href={site.phones[1].href}>{site.phones[1].label}</a>
-      </p>
-      <QuoteForm />
+  <section class="section section-sand" id="preventivo" aria-labelledby="titolo-preventivo">
+    <div class="wrap quote-grid">
+      <div class="quote-side reveal">
+        <h2 id="titolo-preventivo">Richiedi un preventivo</h2>
+        <div class="prose">
+          <p>Scrivici le date e quante persone siete. Ti rispondiamo con il preventivo, oppure chiamaci.</p>
+        </div>
+        <p style="margin-top: 32px">
+          <a class="phone-link" href={site.phones[0].href}>{site.phones[0].label}</a>
+          <a class="phone-link" href={site.phones[1].href}>{site.phones[1].label}</a>
+        </p>
+        <address>
+          {site.address.street}, {site.address.cap} {site.address.city}<br />
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </address>
+      </div>
+      <div class="reveal">
+        <QuoteForm />
+      </div>
     </div>
   </section>
 </Base>

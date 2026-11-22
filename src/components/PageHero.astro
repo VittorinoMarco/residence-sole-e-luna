@@ -7,37 +7,39 @@ interface Crumb {
 interface Props {
   title: string;
   lede: string;
-  tone?: 'cielo' | 'paper' | 'mare' | 'inchiostro';
+  tone?: 'paper' | 'sand' | 'mist' | 'ink';
   crumbs: Crumb[];
   photo?: { src: string; alt: string };
 }
 
-const { title, lede, tone = 'cielo', crumbs, photo } = Astro.props;
+const { title, lede, tone = 'paper', crumbs, photo } = Astro.props;
 ---
 
 <section class:list={['page-hero', `tone-${tone}`, photo && 'has-photo']}>
   <div class="wrap">
-    <div>
-      <nav class="crumbs" aria-label="Percorso">
-        <ol>
-          {
-            crumbs.map((crumb, index) => (
-              <li>
-                {crumb.href && index < crumbs.length - 1 ? <a href={crumb.href}>{crumb.label}</a> : <span>{crumb.label}</span>}
-              </li>
-            ))
-          }
-        </ol>
-      </nav>
-      <h1>{title}</h1>
-      <p class="lede">{lede}</p>
+    <nav class="crumbs" aria-label="Percorso">
+      <ol>
+        {
+          crumbs.map((crumb, index) => (
+            <li>
+              {crumb.href && index < crumbs.length - 1 ? <a href={crumb.href}>{crumb.label}</a> : <span>{crumb.label}</span>}
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+    <div class="page-hero-grid">
+      <div>
+        <h1>{title}</h1>
+        <p class="lede">{lede}</p>
+      </div>
+      {
+        photo && (
+          <div class="mask mask-stadium">
+            <img src={photo.src} alt={photo.alt} fetchpriority="high" />
+          </div>
+        )
+      }
     </div>
-    {
-      photo && (
-        <div class="photo-shape">
-          <img src={photo.src} alt={photo.alt} />
-        </div>
-      )
-    }
   </div>
 </section>

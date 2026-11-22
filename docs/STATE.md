@@ -3,7 +3,7 @@
 Aggiornare solo le righe che cambiano. Log in fondo.
 
 ## Fase attuale
-Sito sul branch `cursor/giorno-sul-golfo`, non committato. Home: la foto si ritira come su vineyard, poi icone, parole grandi e tre foto. Anteprima su `http://127.0.0.1:4321/`. Nessuna pubblicazione.
+Branch `claude/redesign-sole-luna` (da `cursor/giorno-sul-golfo`), non committato. Redesign completo del sito dopo il giudizio negativo su quello di Cursor (tranne l’apertura con la foto che si ritira, tenuta). Anteprima su `http://localhost:4321/`. Nessuna pubblicazione.
 
 ## Decisioni prese (19-22/11/2026)
 - Tipo: vetrina + richiesta preventivo. Obiettivo: raccogliere richieste e contatti.
@@ -16,14 +16,14 @@ Sito sul branch `cursor/giorno-sul-golfo`, non committato. Home: la foto si riti
 - Proposta: 700€ una tantum, forfettario, senza dominio e hosting.
 
 ## Bloccato / in attesa
-- Direzione «Giorno sul golfo» confermata da Marco il 22/11. Colori da residencesoleluna.it, motion da vineyard.co.za. Mappe in `docs/riferimenti/`. Brief in `docs/PRODUCT.md` e `docs/DESIGN.md`.
+- Direzione «Giorno sul golfo» confermata da Marco il 22/11, rifatta il 22/11 sera: stessi colori del marchio ma carta calda, maschere foto a stadio e ad arco, capitoli Piscina/Sera/Lido/Casa, foto vere degli interni. Mappe in `docs/riferimenti/`. Brief in `docs/PRODUCT.md` e `docs/DESIGN.md`.
 - Foto originali, backup del vecchio sito (Joomla), accessi OVH, Search Console, GA4, GTM: dal cliente.
 - Hosting finale e dominio preferito (www o no): da decidere.
-- Pagine non ancora lette del sito attuale: servizi (5), Praia a Mare, cosa vedere, offerte, campi del form.
+- Pagine non ancora lette del sito attuale: offerte, campi del form.
 - Contatori "1+" e "© {2024}" del sito attuale sono errori: non migrarli.
 
 ## Prossimo passo
-1. Marco guarda l’anteprima (`npm run dev`). Commit e pull request solo se li chiede.
+1. Marco guarda l’anteprima (`npm run dev`) e dice cosa cambiare. Commit e pull request solo se li chiede.
 2. Dopo l’incontro del 23/11: foto, testi delle pagine non lette, consenso recensioni, endpoint del form, coordinate mappa, URL Facebook di Point Break, conferma del redirect offerte, ID GTM/GA4, www o apex, hosting.
 3. Prima del go-live: ricontrollare `redirect.csv` con Search Console.
 
@@ -39,3 +39,4 @@ nessuno
 - 2026-11-22: sito Astro completo (11 pagine, 6 redirect, form, motion GSAP solo desktop). Build e `npm run test:links` ok. Verifica in browser: form senza endpoint, contatti, appartamenti, menu a 390 px. Non committato.
 - 2026-11-22: DNA vineyard aggiornato (maschera foto 430px, pillola 40px). Foto del sito attuale al posto dei dischi: golfo, piscina, lido, animazione, icone. Interni e foto ospiti non usati.
 - 2026-11-22: tolte le foto a capsula. Sotto la home: tre schede appartamento, quattro schede ospiti. Pagine interne con foto a radius 16px. Non committato.
+- 2026-11-22 (sera): redesign. Scaricate 23 foto dal sito attuale con ok di Marco (interni, piscina di sera, residence), in `public/images/{residence,appartamenti,piscina}`. Nuovo `global.css`, componenti Icon/PageHero/CloseBand/Footer, home con 8 sezioni, `reveal.ts`. Testi di servizi, Praia, attività e residence presi dal sito attuale; tolte le note interne visibili in pagina e la sezione ospiti vuota. Build e `test:links` ok. Verifica in browser a 1440 e 320 px.

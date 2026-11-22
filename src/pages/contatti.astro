@@ -2,9 +2,9 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import QuoteForm from '../components/QuoteForm.astro';
-import { site } from '../data/site';
+import { paths, site } from '../data/site';
 
-const path = '/contatti';
+const path = paths.contact;
 const title = 'Contatti e preventivo | Residence Soleluna';
 const description =
   'Telefono, email e richiesta di preventivo del Residence Soleluna, Via G. Carducci 38, Praia a Mare.';
@@ -30,33 +30,37 @@ const jsonLd = {
 <Base title={title} description={description} path={path} jsonLd={jsonLd}>
   <PageHero
     title="Contatti"
-    lede="Per informazioni e per un preventivo. I numeri e l’indirizzo sono quelli del sito attuale e vanno confermati prima della pubblicazione."
-    tone="inchiostro"
+    lede="Chiamaci o scrivici per informazioni e per un preventivo."
+    tone="ink"
     crumbs={[
       { href: '/', label: 'Home' },
       { label: 'Contatti' },
     ]}
   />
-  <section class="stack">
-    <div class="wrap">
-      <h2>Dove siamo</h2>
-      <p>
-        {site.address.street}<br />
-        {site.address.cap} {site.address.city}<br />
-        <a href={site.phones[0].href}>{site.phones[0].label}</a><br />
-        <a href={site.phones[1].href}>{site.phones[1].label}</a><br />
-        <a href={`mailto:${site.email}`}>{site.email}</a>
-      </p>
-      <p>
-        <a class="map-link" href={site.map} rel="noopener noreferrer">Apri la mappa</a>
-      </p>
-      <p class="shot-note">Mappa incorporata in attesa delle coordinate verificate. Il link apre la ricerca dell’indirizzo.</p>
-    </div>
-  </section>
-  <section class="band" id="preventivo">
-    <div class="wrap">
-      <h2>Richiedi un preventivo</h2>
-      <QuoteForm needsType />
+
+  <section class="section section-sand" id="preventivo" aria-labelledby="titolo-preventivo">
+    <div class="wrap quote-grid">
+      <div class="quote-side reveal">
+        <h2 id="titolo-preventivo">Richiedi un preventivo</h2>
+        <div class="prose">
+          <p>Indica le date e quante persone siete. Se preferisci, chiama.</p>
+        </div>
+        <p style="margin-top: 32px">
+          <a class="phone-link" href={site.phones[0].href}>{site.phones[0].label}</a>
+          <a class="phone-link" href={site.phones[1].href}>{site.phones[1].label}</a>
+        </p>
+        <address>
+          {site.address.street}<br />
+          {site.address.cap} {site.address.city}<br />
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </address>
+        <p class="actions">
+          <a class="btn btn-ghost" href={site.map} rel="noopener noreferrer">Apri la mappa</a>
+        </p>
+      </div>
+      <div class="reveal">
+        <QuoteForm needsType />
+      </div>
     </div>
   </section>
 </Base>

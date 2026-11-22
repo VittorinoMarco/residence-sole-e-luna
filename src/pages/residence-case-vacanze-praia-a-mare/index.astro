@@ -2,44 +2,76 @@
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CloseBand from '../../components/CloseBand.astro';
-import Missing from '../../components/Missing.astro';
-import { homeIntro, photos } from '../../data/site';
+import Icon from '../../components/Icon.astro';
+import { paths, photos } from '../../data/site';
 
 const title = 'Il residence a Praia a Mare | Soleluna';
 const description =
   'Residence Soleluna, recente costruzione a Praia a Mare: piscina, solarium e vista sul golfo di Policastro, a circa 1 km dal centro e dalla spiaggia.';
-const path = '/residence-case-vacanze-praia-a-mare';
+const path = paths.residence;
+
+const services = [
+  { icon: 'pool', title: 'Piscina', href: paths.pool },
+  { icon: 'star', title: 'Animazione', href: `${paths.services}#animazione` },
+  { icon: 'umbrella', title: 'Lido convenzionato', href: paths.beach },
+  { icon: 'bus', title: 'Servizio navetta', href: paths.beach },
+] as const;
 ---
 
 <Base title={title} description={description} path={path}>
   <PageHero
     title="Il residence"
-    lede={homeIntro}
-    tone="cielo"
+    lede="Case vacanze con piscina a Praia a Mare, sulla costa tirrenica calabrese, con vista sul golfo di Policastro."
+    tone="mist"
     crumbs={[
       { href: '/', label: 'Home' },
       { label: 'Il residence' },
     ]}
-    photo={photos.golfo}
+    photo={photos.panorama}
   />
-  <section class="stack">
-    <div class="wrap">
-      <h2>Cosa c’è</h2>
-      <ul>
-        <li>Piscina riservata agli ospiti, con chiosco bar, lettini, ombrelloni e docce.</li>
-        <li>Animazione per adulti e bambini, tutti i giorni.</li>
-        <li>Lido convenzionato Point Break.</li>
-        <li>36 appartamenti arredati.</li>
-        <li>Parcheggio interno con telecomando per il cancello.</li>
-        <li>Spazio giochi.</li>
-        <li>Navetta gratuita per la spiaggia. Gli orari sono da riconfermare.</li>
-      </ul>
-      <p class="actions">
-        <a class="btn btn-sea" href="/residence-case-vacanze-praia-a-mare/appartamenti-soleluna">Gli appartamenti</a>
-        <a href="/residence-calabria-piscina-animazione-lido">I servizi</a>
-      </p>
-      <Missing subject="la pagina Il residence" />
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="reveal">
+        <h2>Case vacanze in residence a Praia a Mare</h2>
+        <div class="prose">
+          <p>
+            Il residence di nuova costruzione è a Praia a Mare, rinomata località balneare della costa tirrenica
+            calabrese, a circa 1 km dal centro della cittadina e dall’ampia spiaggia di sabbia e ghiaia.
+          </p>
+          <p>
+            Ha piscina e solarium, ed è in posizione tranquilla e panoramica, con vista sul golfo di Policastro.
+          </p>
+        </div>
+        <p class="actions">
+          <a class="btn" href={`${paths.contact}#preventivo`}>Richiedi un preventivo</a>
+          <a class="btn btn-ghost" href={paths.apartments}>Gli appartamenti</a>
+        </p>
+      </div>
+      <div class="mask mask-soft reveal">
+        <img src={photos.facciata.src} alt={photos.facciata.alt} loading="lazy" />
+      </div>
     </div>
   </section>
+
+  <section class="section section-sand" aria-labelledby="titolo-servizi">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <h2 id="titolo-servizi">Cosa c’è</h2>
+      </header>
+      <ul class="cards three">
+        {
+          services.map((service) => (
+            <li class="card reveal">
+              <Icon name={service.icon} />
+              <h3>{service.title}</h3>
+              <a class="more" href={service.href}>Scopri di più</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
   <CloseBand />
 </Base>

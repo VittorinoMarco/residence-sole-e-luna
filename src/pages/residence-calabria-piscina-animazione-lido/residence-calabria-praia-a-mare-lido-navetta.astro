@@ -2,33 +2,54 @@
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CloseBand from '../../components/CloseBand.astro';
-import Missing from '../../components/Missing.astro';
-import { photos } from '../../data/site';
+import Icon from '../../components/Icon.astro';
+import { paths, photos } from '../../data/site';
 
-const path = '/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-lido-navetta';
+const path = paths.beach;
 ---
 
 <Base
-  title="Lido e navetta | Residence Soleluna"
-  description="Lido convenzionato Point Break e navetta gratuita per la spiaggia dal Residence Soleluna a Praia a Mare. Orari da riconfermare."
+  title="Lido convenzionato e navetta | Residence Soleluna"
+  description="Servizio spiaggia in convenzione con il lido Point Break di Praia a Mare, con navetta gratuita dal Residence Soleluna."
   path={path}
 >
   <PageHero
     title="Lido e navetta"
-    lede="Il lido convenzionato è Point Break. La navetta per la spiaggia è gratuita. Sul sito precedente gli orari sono 9.00-13.00 e 15.30-19.30, ogni 30 minuti: vanno riconfermati."
-    tone="mare"
+    lede="Servizio spiaggia con navetta privata, in convenzione con il lido Point Break, sulla spiaggia di Praia a Mare."
+    tone="mist"
     crumbs={[
       { href: '/', label: 'Home' },
-      { href: '/residence-calabria-piscina-animazione-lido', label: 'Servizi' },
+      { href: paths.services, label: 'Servizi' },
       { label: 'Lido e navetta' },
     ]}
     photo={photos.lido}
   />
-  <section class="stack">
+
+  <section class="section">
     <div class="wrap">
-      <p class="shot-note">Manca l’indirizzo preciso della pagina Facebook di Point Break.</p>
-      <Missing subject="la pagina lido e navetta" />
+      <ul class="cards">
+        <li class="card reveal">
+          <Icon name="umbrella" />
+          <h2>Spiaggia attrezzata</h2>
+          <p>
+            Il lido Point Break è adatto a tutti, anche alle famiglie con bambini: è l’ideale per una vacanza all’insegna
+            del relax, del divertimento e dello sport.
+          </p>
+        </li>
+        <li class="card reveal">
+          <Icon name="bus" />
+          <h2>Servizio navetta</h2>
+          <p>
+            Una comoda navetta, da e per la spiaggia, è a disposizione gratuitamente tutti i giorni dalle 9.00 alle 13.00
+            e dalle 15.30 alle 19.30, ogni 30 minuti.
+          </p>
+        </li>
+      </ul>
+      <p class="note" style="margin-top: 24px">
+        Il residence è a circa 1 km dal centro e dalla spiaggia di sabbia e ghiaia.
+      </p>
     </div>
   </section>
+
   <CloseBand />
 </Base>

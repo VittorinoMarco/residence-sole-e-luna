@@ -2,32 +2,70 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CloseBand from '../components/CloseBand.astro';
-import Missing from '../components/Missing.astro';
+import { paths, photos, places } from '../data/site';
 
-const path = '/praia-a-mare-cosa-fare';
+const path = paths.town;
+const slug = (value: string) => value.toLowerCase().replace(/\s+/g, '-');
 ---
 
 <Base
-  title="Praia a Mare, cosa fare | Residence Soleluna"
-  description="Il Residence Soleluna è a circa 1 km dal centro di Praia a Mare e dalla spiaggia di sabbia e ghiaia."
+  title="Praia a Mare, cosa vedere e cosa fare | Residence Soleluna"
+  description="Isola Dino, Arcomagno, Maratea, Diamante, Aieta e Tortora: cosa vedere intorno a Praia a Mare, a circa 1 km dal Residence Soleluna."
   path={path}
 >
   <PageHero
     title="Praia a Mare"
-    lede="Il residence è a circa 1 km dal centro della cittadina e dall’ampia spiaggia di sabbia e ghiaia, sulla costa tirrenica calabrese, con vista sul golfo di Policastro."
-    tone="cielo"
+    lede="Il Residence Soleluna è a Praia a Mare, località balneare nota per il mare incontaminato, l’Isola Dino e le sue grotte, il Viale delle Libertà e un lungomare di più di 4 km."
+    tone="sand"
     crumbs={[
       { href: '/', label: 'Home' },
       { label: 'Praia a Mare' },
     ]}
+    photo={photos.lido}
   />
-  <section class="stack">
-    <div class="wrap">
-      <p>
-        <a href="/praia-a-mare-cosa-fare-cosa-vedere">Cosa vedere</a>
-      </p>
-      <Missing subject="la pagina Praia a Mare" />
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="reveal">
+        <h2>Spiagge e natura</h2>
+        <div class="prose">
+          <p>
+            Oltre 4 km di spiaggia e l’Isola Dino, la maggiore delle isole calabresi. La flora è quella tipica del
+            Mediterraneo: mirto, ginestre e pini che colorano di verde il paesaggio.
+          </p>
+          <p>
+            Si possono esplorare le grotte dell’Isola Dino con una gita in barca, oppure salire sul monte Vinciolo per
+            una vista sull’intero golfo di Policastro.
+          </p>
+          <p>
+            Dal residence c’è un panorama su tutta la costa e una vista dall’alto dell’Isola Dino.
+          </p>
+        </div>
+      </div>
+      <div class="mask mask-soft reveal">
+        <img src={photos.golfo.src} alt={photos.golfo.alt} loading="lazy" />
+      </div>
     </div>
   </section>
+
+  <section class="section section-sand" aria-labelledby="titolo-luoghi">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <h2 id="titolo-luoghi">Da visitare nei dintorni</h2>
+      </header>
+      {
+        places.map((place) => (
+          <article class="place reveal" id={slug(place.name)}>
+            <h2>{place.name}</h2>
+            <p>{place.text}</p>
+          </article>
+        ))
+      }
+      <p class="actions">
+        <a class="btn btn-ghost" href={paths.activities}>Le attività</a>
+      </p>
+    </div>
+  </section>
+
   <CloseBand />
 </Base>

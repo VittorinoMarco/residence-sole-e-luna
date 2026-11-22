@@ -2,46 +2,61 @@
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CloseBand from '../../components/CloseBand.astro';
-import { apartmentDetails, apartmentIntro, photos } from '../../data/site';
+import { apartmentDetails, apartmentGallery, apartmentIntro, paths, photos } from '../../data/site';
 
 const title = 'Appartamenti del Residence Soleluna a Praia a Mare';
 const description =
   '36 appartamenti al Residence Soleluna: bilocali, trilocali e quadrilocali con terrazzo, aria condizionata nel soggiorno e cucina componibile.';
-const path = '/residence-case-vacanze-praia-a-mare/appartamenti-soleluna';
+const path = paths.apartments;
 ---
 
 <Base title={title} description={description} path={path}>
   <PageHero
     title="Gli appartamenti"
     lede={apartmentIntro}
-    tone="paper"
+    tone="sand"
     crumbs={[
       { href: '/', label: 'Home' },
-      { href: '/residence-case-vacanze-praia-a-mare', label: 'Il residence' },
+      { href: paths.residence, label: 'Il residence' },
       { label: 'Appartamenti' },
     ]}
-    photo={photos.golfo}
+    photo={photos.bilocale}
   />
-  <section class="stack">
+
+  <section class="section">
     <div class="wrap">
-      <p class="shot-note">Foto di soggiorno e terrazzo non presenti sul sito attuale. Qui c’è l’esterno, con piscina e appartamenti.</p>
-      <div class="detail-grid">
-        {
-          apartmentDetails.map((group) => (
-            <article class="info-card">
-              <div>
-                <h2>{group.title}</h2>
-                <ul>
-                  {group.items.map((item) => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))
-        }
+      {
+        apartmentDetails.map((group, index) => (
+          <article class:list={['detail', 'reveal', index % 2 === 1 && 'flip']}>
+            <div class="mask mask-soft">
+              <img src={group.photo.src} alt={group.photo.alt} loading="lazy" />
+            </div>
+            <div>
+              <h2>{group.title}</h2>
+              <span class="beds">{group.beds}</span>
+              <ul class="list-dash">
+                {group.items.map((item) => <li>{item}</li>)}
+              </ul>
+              <p class="actions">
+                <a class="btn" href={`${paths.contact}#preventivo`}>Richiedi un preventivo</a>
+              </p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section section-sand" aria-labelledby="titolo-galleria">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <h2 id="titolo-galleria">Dentro gli appartamenti</h2>
+      </header>
+      <div class="gallery">
+        {apartmentGallery.map((photo) => <img class="reveal" src={photo.src} alt={photo.alt} loading="lazy" />)}
       </div>
     </div>
   </section>
+
   <CloseBand />
 </Base>

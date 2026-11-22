@@ -1,5 +1,5 @@
 ---
-import { site } from '../data/site';
+import { nav, site } from '../data/site';
 
 interface Props {
   year: number;
@@ -13,38 +13,34 @@ const { year } = Astro.props;
     <div>
       <p class="footer-name">Soleluna</p>
       <p>
-        {site.address.street}<br />
-        {site.address.cap} {site.address.city}<br />
-        {site.address.country}
+        Residence a Praia a Mare, sul golfo di Policastro.<br />
+        <a href={site.map} rel="noopener noreferrer">{site.address.street}, {site.address.cap} {site.address.city}</a>
       </p>
     </div>
     <div>
-      <p>
-        <a href={site.phones[0].href}>{site.phones[0].label}</a><br />
-        <a href={site.phones[1].href}>{site.phones[1].label}</a><br />
-        <a href={`mailto:${site.email}`}>{site.email}</a>
-      </p>
+      <p class="footer-label">Contatti</p>
+      <ul class="footer-links">
+        <li><a href={site.phones[0].href}>{site.phones[0].label}</a></li>
+        <li><a href={site.phones[1].href}>{site.phones[1].label}</a></li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+      </ul>
     </div>
     <div>
-      <p>
-        {site.social.map((item) => (
-          <a href={item.href} rel="noopener noreferrer">{item.label}</a>
-        ))}
-      </p>
-      <p>
-        <a href={site.privacy} rel="noopener noreferrer">Privacy</a><br />
-        <a href={site.cookies} rel="noopener noreferrer">Cookie</a>
-      </p>
+      <p class="footer-label">Il sito</p>
+      <ul class="footer-links">
+        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <p class="footer-label">Seguici</p>
+      <ul class="footer-links">
+        {site.social.map((item) => <li><a href={item.href} rel="noopener noreferrer">{item.label}</a></li>)}
+        <li><a href={site.privacy} rel="noopener noreferrer">Privacy</a></li>
+        <li><a href={site.cookies} rel="noopener noreferrer">Cookie</a></li>
+      </ul>
     </div>
   </div>
   <div class="wrap fine">
     <p>© {year} Residence Soleluna</p>
   </div>
 </footer>
-
-<style>
-  .site-footer a {
-    display: inline;
-    margin-right: 16px;
-  }
-</style>

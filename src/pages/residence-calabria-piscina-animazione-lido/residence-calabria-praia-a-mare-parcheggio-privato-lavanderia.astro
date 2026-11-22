@@ -2,32 +2,48 @@
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CloseBand from '../../components/CloseBand.astro';
-import Missing from '../../components/Missing.astro';
+import Icon from '../../components/Icon.astro';
+import { paths, photos } from '../../data/site';
 
-const path =
-  '/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-parcheggio-privato-lavanderia';
+const path = paths.parking;
 ---
 
 <Base
-  title="Parcheggio e lavanderia | Residence Soleluna"
-  description="Parcheggio interno con telecomando per il cancello e lavanderia self-service al Residence Soleluna di Praia a Mare."
+  title="Parcheggio privato e lavanderia | Residence Soleluna"
+  description="Parcheggio interno con telecomando per il cancello e lavanderia self-service a gettoni al Residence Soleluna di Praia a Mare."
   path={path}
 >
   <PageHero
     title="Parcheggio e lavanderia"
-    lede="Il parcheggio è interno e il cancello si apre con il telecomando. In menu la lavanderia è indicata come self-service."
-    tone="paper"
+    lede="Un posto per l’auto dentro il residence e una lavanderia self-service, per stare comodi per tutta la vacanza."
+    tone="mist"
     crumbs={[
       { href: '/', label: 'Home' },
-      { href: '/residence-calabria-piscina-animazione-lido', label: 'Servizi' },
+      { href: paths.services, label: 'Servizi' },
       { label: 'Parcheggio e lavanderia' },
     ]}
+    photo={photos.facciata}
   />
-  <section class="stack">
+
+  <section class="section">
     <div class="wrap">
-      <p class="shot-note">Foto in attesa: parcheggio interno e lavanderia.</p>
-      <Missing subject="la pagina parcheggio e lavanderia" />
+      <ul class="cards">
+        <li class="card reveal">
+          <Icon name="car" />
+          <h2>Posto auto</h2>
+          <p>
+            Ogni ospite, al suo arrivo, riceve insieme alle chiavi dell’appartamento un telecomando per il cancello
+            carrabile del residence, per parcheggiare comodamente l’auto al suo interno.
+          </p>
+        </li>
+        <li class="card reveal">
+          <Icon name="wash" />
+          <h2>Lavanderia self-service</h2>
+          <p>Lavanderia a gettoni, con asse e ferro da stiro.</p>
+        </li>
+      </ul>
     </div>
   </section>
+
   <CloseBand />
 </Base>

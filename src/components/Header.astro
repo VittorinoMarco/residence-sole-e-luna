@@ -9,12 +9,12 @@ const { path } = Astro.props;
 const current = path.replace(/\/$/, '') || '/';
 ---
 
-<header class="site-header">
+<header class:list={['site-header', current === '/' && 'is-clear']}>
   <div class="header-inner">
     <a class="logo" href="/" aria-label="Residence Soleluna, home">
       <svg viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="13" cy="13" r="7" fill="#F9C043"></circle>
-        <path d="M22 10a7 7 0 1 0 0 14 5.5 5.5 0 1 1 0-14z" fill="#1D65AC"></path>
+        <circle cx="12.5" cy="12.5" r="7.5" fill="#F9C043"></circle>
+        <path d="M23.5 9.5a8 8 0 1 0 0 15.5 6.4 6.4 0 1 1 0-15.5z" fill="#1D65AC"></path>
       </svg>
       <span class="logo-name"><span>Residence</span><span>Soleluna</span></span>
     </a>
@@ -59,6 +59,9 @@ const current = path.replace(/\/$/, '') || '/';
     const toggle = button();
     nav?.classList.remove('is-open');
     toggle?.setAttribute('aria-expanded', 'false');
+    if (toggle) toggle.textContent = 'Menu';
+    document.querySelector('.site-header')?.classList.remove('menu-open');
+    document.documentElement.style.overflow = '';
   }
 
   function openMenu() {
@@ -66,6 +69,9 @@ const current = path.replace(/\/$/, '') || '/';
     const toggle = button();
     nav?.classList.add('is-open');
     toggle?.setAttribute('aria-expanded', 'true');
+    if (toggle) toggle.textContent = 'Chiudi';
+    document.querySelector('.site-header')?.classList.add('menu-open');
+    document.documentElement.style.overflow = 'hidden';
     nav?.querySelector<HTMLElement>('a')?.focus();
   }
 

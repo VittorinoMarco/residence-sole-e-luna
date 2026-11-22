@@ -27,12 +27,17 @@ Segna `[x]` quando arriva. Incontro: 23/11/2026.
 - [ ] Quanti preventivi arrivano oggi al mese e da quali canali (per il confronto prima/dopo)
 
 ## Emersi costruendo il sito (22/11/2026)
-- [ ] Testo integrale delle pagine non ancora rilette: Il residence, servizi, Praia a Mare, cosa vedere, campi del form
-- [ ] Consenso a pubblicare le 4 recensioni e i link alle fonti
+- [x] Testi di servizi, Praia a Mare, attività e residence: copiati dal sito attuale (22/11). Restano da leggere offerte e campi del form
+- [ ] Consenso a pubblicare le 4 recensioni e i link alle fonti. Per ora la sezione ospiti non è nel sito: si rimette solo con i testi veri
 - [ ] Endpoint che riceve il preventivo (`PUBLIC_QUOTE_ENDPOINT`): oggi il form valida e dice che l’invio non è collegato
 - [ ] Coordinate verificate per incorporare la mappa
 - [ ] URL della pagina Facebook del Lido Point Break
 - [ ] Conferma del redirect provvisorio di `/offerte-residence-calabria-praia-scalea` verso la home
+
+- [ ] Foto originali in alta risoluzione: quelle scaricate dal sito attuale sono da 450-1900 px (le gallerie di interni e piscina sono a ~900 px). Vanno bene per l’anteprima, non per un hero retina
+- [ ] Abbinamento foto-tipologia: cucina arancione = bilocale, blu = trilocale, verde = quadrilocale, come sul sito attuale. Il cliente conferma
+- [ ] Orari navetta mostrati sulle pagine come nel sito attuale (9-13, 15.30-19.30, ogni 30 min): da riconfermare prima della messa online
+- [ ] Foto di Isola Dino, Arcomagno, Aieta e Diamante (ci sono sul sito attuale, non ancora scaricate)
 
 ## Decisioni
 - [ ] Hosting finale e proprietà degli account (repo, dominio, hosting)
