@@ -1,0 +1,36 @@
+# Dipendenze e build
+node_modules/
+dist/
+.astro/
+.vercel/
+.wrangler/
+.netlify/
+
+# Segreti e ambienti locali
+.env
+.env.*
+!.env.example
+
+# Log e cache
+*.log
+npm-debug.log*
+.cache/
+.eslintcache
+.parcel-cache/
+
+# Sistema e editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# Output di test
+coverage/
+playwright-report/
+test-results/
+
+# File pesanti non ottimizzati (originali dal cliente): non in Git normale
+originali/
+*.zip
