@@ -1,0 +1,176 @@
+---
+import Base from '../layouts/Base.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import { apartments, chapters, facts, homeIntro, photos, site } from '../data/site';
+
+const title = 'Residence Soleluna a Praia a Mare | Piscina, lido e appartamenti';
+const description =
+  'Residence Soleluna a Praia a Mare: appartamenti con piscina, lido convenzionato Point Break e navetta per la spiaggia. Chiedi un preventivo.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: site.name,
+  url: site.url,
+  email: site.email,
+  telephone: ['+390985779029', '+393388750991'],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    postalCode: site.address.cap,
+    addressLocality: 'Praia a Mare',
+    addressRegion: 'CS',
+    addressCountry: 'IT',
+  },
+};
+---
+
+<Base title={title} description={description} path="/" jsonLd={jsonLd}>
+  <section class="opening" data-shrink>
+    <div class="opening-sticky">
+      <div class="shrink-frame" data-shrink-frame>
+        <img src={photos.golfo.src} alt={photos.golfo.alt} />
+      </div>
+      <div class="intro" data-intro>
+        <p class="kicker">Residence a Praia a Mare</p>
+        <h1>
+          <span class="sole">Sole</span> <span class="luna">Luna</span>
+        </h1>
+        <p class="lede">{homeIntro}</p>
+        <p class="actions">
+          <a class="btn" href="#preventivo">Richiedi un preventivo</a>
+          <a class="btn btn-line" href={site.phones[0].href}>Chiama</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="facts" aria-label="Nel residence">
+    <dl class="fact-list fact-row">
+      {
+        facts.map((fact) => (
+          <div>
+            {fact.icon && <img class="fact-icon" src={fact.icon} alt="" width="40" height="40" />}
+            <dt>{fact.title}</dt>
+            <dd>{fact.text}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="reel" data-reel aria-label="Piscina, lido e casa">
+    {
+      chapters.map((chapter) => (
+        <article class="reel-photo" data-reel-photo id={chapter.id}>
+          <img src={chapter.photo.src} alt={chapter.photo.alt} />
+          <div class="reel-copy">
+            <h2 class="reel-local">{chapter.word}</h2>
+            <p>{chapter.text}</p>
+            <p>
+              <a class="btn btn-line" href={chapter.href}>{chapter.link}</a>
+            </p>
+          </div>
+        </article>
+      ))
+    }
+    <div class="reel-words" data-reel-words aria-hidden="true">
+      {chapters.map((chapter) => <span class="reel-word">{chapter.word}</span>)}
+    </div>
+  </section>
+
+  <section class="trio" aria-label="Piscina, lido e golfo">
+    <img src={photos.piscina.src} alt={photos.piscina.alt} />
+    <img src={photos.lido.src} alt={photos.lido.alt} />
+    <img src={photos.golfo.src} alt={photos.golfo.alt} />
+  </section>
+
+  <section class="stays" aria-label="Tipi di appartamento">
+    <div class="wrap">
+      <header class="stays-head">
+        <h2>Gli appartamenti</h2>
+        <p>Gli interni non sono tra le foto del sito attuale. Le schede mostrano l’esterno, la piscina e il golfo.</p>
+      </header>
+      <div class="stay-grid">
+        {
+          apartments.map((item, index) => {
+            const shot = [photos.piscina, photos.lido, photos.golfo][index];
+            return (
+              <article class="stay-card">
+                <img src={shot.src} alt={shot.alt} />
+                <div>
+                  <h3>{item.title}</h3>
+                  <span class="beds">{item.beds}</span>
+                  <p>{item.summary}</p>
+                  <a href="/residence-case-vacanze-praia-a-mare/appartamenti-soleluna">Scheda completa</a>
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="guests">
+    <div class="wrap">
+      <header class="stays-head">
+        <h2>I nostri ospiti</h2>
+        <p>Quattro recensioni si pubblicano solo dopo il consenso del residence. Nessun punteggio aggregato.</p>
+      </header>
+      <ul class="guest-grid">
+        <li>
+          <span>Google</span>
+          <strong>Adele Vanacore</strong>
+          <p>In attesa del consenso.</p>
+        </li>
+        <li>
+          <span>Google</span>
+          <strong>Rosaria De Luca</strong>
+          <p>In attesa del consenso.</p>
+        </li>
+        <li>
+          <span>TripAdvisor</span>
+          <strong>Stella A.</strong>
+          <p>In attesa del consenso.</p>
+        </li>
+        <li>
+          <span>TripAdvisor</span>
+          <strong>Pasquale e Enza</strong>
+          <p>In attesa del consenso.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="praia">
+    <div class="wrap praia-grid">
+      <div>
+        <h2>Praia a Mare</h2>
+        <p class="lede">
+          Il residence dista circa 1 km dal centro e dalla spiaggia di sabbia e ghiaia.
+        </p>
+        <p class="actions">
+          <a class="btn btn-sea" href="/praia-a-mare-cosa-fare">Cosa fare</a>
+          <a href="/praia-a-mare-cosa-fare-cosa-vedere">Cosa vedere</a>
+        </p>
+      </div>
+      <img src={photos.lido.src} alt={photos.lido.alt} />
+    </div>
+  </section>
+
+  <section class="band" id="preventivo">
+    <div class="wrap band-inner">
+      <h2>Per info e prenotazioni</h2>
+      <p>
+        <a class="phone-link" href={site.phones[0].href}>{site.phones[0].label}</a>
+        <a class="phone-link" href={site.phones[1].href}>{site.phones[1].label}</a>
+      </p>
+      <QuoteForm />
+    </div>
+  </section>
+</Base>
+
+<script>
+  import '../scripts/home-motion';
+</script>

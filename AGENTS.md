@@ -34,7 +34,10 @@ Non rileggere tutto il repo se non serve: parti da questi file e dal file che de
 A fine sessione aggiorna `docs/STATE.md` (solo le righe che cambiano): cosa hai fatto, cosa viene dopo, cosa è bloccato e da chi. Aggiungi una riga datata nel log in fondo. Il prossimo agente (o Marco) riparte da lì.
 
 ## Comandi
-Da definire dopo lo scaffold (Astro). Quando esistono, scrivili qui: installazione, sviluppo, build, test di link e redirect, QA.
+- `npm install`
+- `npm run dev` (sito in locale)
+- `npm run build` poi `npm run preview`
+- `npm run test:links` dopo la build: link interni, redirect del CSV, title, un solo H1, canonical
 
 ## Qualità prima di dire "fatto"
 Esegui la build e i test. Per le pagine: controlla titolo, H1 unico, canonical, link interni, mobile a 320 px. Non dichiarare risultati di performance senza averli misurati.

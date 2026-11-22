@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import { site } from '../data/site';
+
+const path = '/contatti';
+const title = 'Contatti e preventivo | Residence Soleluna';
+const description =
+  'Telefono, email e richiesta di preventivo del Residence Soleluna, Via G. Carducci 38, Praia a Mare.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: site.name,
+  url: site.url,
+  email: site.email,
+  telephone: ['+390985779029', '+393388750991'],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    postalCode: site.address.cap,
+    addressLocality: 'Praia a Mare',
+    addressRegion: 'CS',
+    addressCountry: 'IT',
+  },
+};
+---
+
+<Base title={title} description={description} path={path} jsonLd={jsonLd}>
+  <PageHero
+    title="Contatti"
+    lede="Per informazioni e per un preventivo. I numeri e l’indirizzo sono quelli del sito attuale e vanno confermati prima della pubblicazione."
+    tone="inchiostro"
+    crumbs={[
+      { href: '/', label: 'Home' },
+      { label: 'Contatti' },
+    ]}
+  />
+  <section class="stack">
+    <div class="wrap">
+      <h2>Dove siamo</h2>
+      <p>
+        {site.address.street}<br />
+        {site.address.cap} {site.address.city}<br />
+        <a href={site.phones[0].href}>{site.phones[0].label}</a><br />
+        <a href={site.phones[1].href}>{site.phones[1].label}</a><br />
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+      <p>
+        <a class="map-link" href={site.map} rel="noopener noreferrer">Apri la mappa</a>
+      </p>
+      <p class="shot-note">Mappa incorporata in attesa delle coordinate verificate. Il link apre la ricerca dell’indirizzo.</p>
+    </div>
+  </section>
+  <section class="band" id="preventivo">
+    <div class="wrap">
+      <h2>Richiedi un preventivo</h2>
+      <QuoteForm needsType />
+    </div>
+  </section>
+</Base>

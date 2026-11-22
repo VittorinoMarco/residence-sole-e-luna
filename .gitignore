@@ -26,6 +26,9 @@ Thumbs.db
 !.vscode/extensions.json
 *.swp
 
+# Prove di confronto motion (reanimate)
+.reanimate/
+
 # Output di test
 coverage/
 playwright-report/

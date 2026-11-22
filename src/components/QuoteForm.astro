@@ -1,0 +1,86 @@
+---
+interface Props {
+  needsType?: boolean;
+}
+
+const { needsType = false } = Astro.props;
+---
+
+<form class="form" data-quote data-needs-type={needsType ? 'true' : 'false'} novalidate>
+  <p class="form-status" data-status role="status"></p>
+  <label>
+    Nome e cognome
+    <input name="nome" type="text" autocomplete="name" required />
+    <span class="field-error" data-error="nome"></span>
+  </label>
+  <div class="row-2">
+    <label>
+      Email
+      <input name="email" type="email" autocomplete="email" required />
+      <span class="field-error" data-error="email"></span>
+    </label>
+    <label>
+      Telefono
+      <input name="telefono" type="tel" autocomplete="tel" required />
+      <span class="field-error" data-error="telefono"></span>
+    </label>
+  </div>
+  <div class="row-2">
+    <label>
+      Arrivo
+      <input name="arrivo" type="date" required />
+      <span class="field-error" data-error="arrivo"></span>
+    </label>
+    <label>
+      Partenza
+      <input name="partenza" type="date" required />
+      <span class="field-error" data-error="partenza"></span>
+    </label>
+  </div>
+  <div class="row-2">
+    <label>
+      Ospiti
+      <input name="ospiti" type="number" inputmode="numeric" min="1" max="99" required />
+      <span class="field-error" data-error="ospiti"></span>
+    </label>
+    {
+      needsType && (
+        <label>
+          Tipologia
+          <select name="tipologia" required>
+            <option value="">Scegli</option>
+            <option>Bilocale</option>
+            <option>Trilocale</option>
+            <option>Quadrilocale</option>
+            <option>Non so ancora</option>
+          </select>
+          <span class="field-error" data-error="tipologia"></span>
+        </label>
+      )
+    }
+  </div>
+  <label>
+    Messaggio
+    <textarea name="messaggio" rows="4"></textarea>
+    <span class="field-error" data-error="messaggio"></span>
+  </label>
+  <label class="check">
+    <input name="privacy" type="checkbox" required />
+    <span>
+      Ho letto l’informativa e acconsento al trattamento dei dati per ricevere il preventivo.
+      <a href="https://www.iubenda.com/privacy-policy/79015327" rel="noopener noreferrer">Privacy</a>
+    </span>
+  </label>
+  <span class="field-error" data-error="privacy"></span>
+  <div class="hp" aria-hidden="true">
+    <label>
+      Azienda
+      <input name="company" type="text" tabindex="-1" autocomplete="off" />
+    </label>
+  </div>
+  <button class="btn" type="submit">Richiedi un preventivo</button>
+</form>
+
+<script>
+  import '../scripts/quote-form';
+</script>

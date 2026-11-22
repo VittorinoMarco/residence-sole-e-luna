@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CloseBand from '../../components/CloseBand.astro';
+import Missing from '../../components/Missing.astro';
+import { photos } from '../../data/site';
+
+const path = '/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-lido-navetta';
+---
+
+<Base
+  title="Lido e navetta | Residence Soleluna"
+  description="Lido convenzionato Point Break e navetta gratuita per la spiaggia dal Residence Soleluna a Praia a Mare. Orari da riconfermare."
+  path={path}
+>
+  <PageHero
+    title="Lido e navetta"
+    lede="Il lido convenzionato è Point Break. La navetta per la spiaggia è gratuita. Sul sito precedente gli orari sono 9.00-13.00 e 15.30-19.30, ogni 30 minuti: vanno riconfermati."
+    tone="mare"
+    crumbs={[
+      { href: '/', label: 'Home' },
+      { href: '/residence-calabria-piscina-animazione-lido', label: 'Servizi' },
+      { label: 'Lido e navetta' },
+    ]}
+    photo={photos.lido}
+  />
+  <section class="stack">
+    <div class="wrap">
+      <p class="shot-note">Manca l’indirizzo preciso della pagina Facebook di Point Break.</p>
+      <Missing subject="la pagina lido e navetta" />
+    </div>
+  </section>
+  <CloseBand />
+</Base>

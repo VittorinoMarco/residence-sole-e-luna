@@ -1,0 +1,74 @@
+{
+  "source": {
+    "url": "https://www.vineyard.co.za/",
+    "pages": 1,
+    "viewport": [1440, 900],
+    "pageHeight": 11182,
+    "rootFontSize": "8.333px"
+  },
+  "tokens": {
+    "spacing": {
+      "base_unit": 8.333,
+      "scale": [6.667, 8.333, 10, 13.333, 20, 26.667, 33.333, 66.667]
+    },
+    "typography": {
+      "families": {
+        "display": "Optima",
+        "body": "Mori"
+      },
+      "scale": {
+        "chapterWord": { "size": "109.167px", "weight": 400, "color": "#FFFFFF" },
+        "h2": { "size": "49.167px", "lineHeight": "54.083px", "letterSpacing": "-0.492px", "weight": 400 },
+        "h3": { "size": "29.167px", "lineHeight": "35px", "weight": 400 },
+        "body": { "size": "13.333px", "lineHeight": "21.333px", "weight": 400 },
+        "label": { "size": "11.667px", "letterSpacing": "0.467px", "weight": 400 }
+      }
+    },
+    "colors": [
+      { "role": "ink", "value": "#151D25" },
+      { "role": "cream", "value": "#FFF9F3" },
+      { "role": "paper", "value": "#FFFEFD" },
+      { "role": "terracotta", "value": "#B6522E" },
+      { "role": "warm-gray", "value": "#BBB2A6" },
+      { "role": "sage", "value": "#697A72" }
+    ],
+    "radius": {
+      "control": "40px",
+      "photoMask": "430px su riquadro 1392×860",
+      "imageElement": "0px"
+    },
+    "shadows": ["rgba(21, 29, 37, 0.1) 0px 5px 13.333px 0px"],
+    "image_ratios": ["video hero 1440×900", "maschera 1392×860"],
+    "grid": { "maxWidth": "none", "columns": "testo a sinistra, foto a destra nella sezione Sleep" }
+  },
+  "taste": [
+    {
+      "name": "La foto tiene il raggio",
+      "trigger": "Una sezione deve far vedere un luogo.",
+      "decision": "Maschera con border-radius 430px su 1392×860, invece di un rettangolo di colore pieno.",
+      "reason": "Il bordo curvo ritaglia il luogo e lascia il testo sulla carta, accanto.",
+      "evidence": ["media-wrapper 1392×860 radius 430px", "img interne a radius 0", "sezione Sleep: titolo a sinistra, foto a destra"]
+    },
+    {
+      "name": "Una parola, un peso",
+      "trigger": "Il nome di un capitolo.",
+      "decision": "Optima 400 a 109px, invece di un titolo a peso 700.",
+      "reason": "La parola nomina la foto e non compete con lei.",
+      "evidence": ["109.167px ×12", "peso 400 ×623 contro 700 ×8"]
+    },
+    {
+      "name": "La pillola solo sul comando",
+      "trigger": "Un link che prosegue il capitolo.",
+      "decision": "Pulsante outline radius 40px, invece di un rettangolo pieno ripetuto sui blocchi.",
+      "reason": "La curva della maschera torna una volta sola, sul controllo.",
+      "evidence": ["radius 40px ×112", "Learn More radius 40px"]
+    },
+    {
+      "name": "Il colore di sezione è la fotografia",
+      "trigger": "Serve contrasto tra un capitolo e il successivo.",
+      "decision": "Lastra carta o inchiostro, colore demandato alla foto, invece di un fondo diverso per capitolo.",
+      "reason": "Terracotta e salvia restano segni piccoli. La foto ha già i suoi colori.",
+      "evidence": ["terracotta circa 11% di area", "carta #FFF9F3 sulle sezioni di testo"]
+    }
+  ]
+}

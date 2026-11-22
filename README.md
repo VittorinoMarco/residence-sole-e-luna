@@ -7,5 +7,8 @@ Sito vetrina con richiesta di preventivo per il Residence Soleluna (Praia a Mare
 - Stato del lavoro e decisioni: `docs/STATE.md`
 - Cose da farsi dare dal cliente: `docs/TODO-CLIENTE.md`
 - Contenuti del sito attuale: `docs/CONTENUTI-LEGACY.md`
+- Direzione visiva: `docs/DESIGN.md`
+
+Comandi: `npm install`, `npm run dev`, `npm run build`, `npm run test:links`.
 
 Repository privato: contiene la proposta economica e dati del cliente.

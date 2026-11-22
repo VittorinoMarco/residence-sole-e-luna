@@ -1,0 +1,42 @@
+[
+  {
+    "file": "golfo.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/01-Home/Residence-Praia-Mare-promo-02.jpg",
+    "soggetto": "Piscina, appartamenti e golfo di Policastro",
+    "pagina": "/",
+    "alt": "Piscina del Residence Soleluna, con gli appartamenti e il golfo di Policastro",
+    "diritti": "da verificare, ripresa dal sito attuale"
+  },
+  {
+    "file": "piscina.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/01-Home/Residence-Praia-Mare-01.jpg",
+    "soggetto": "Piscina, solarium, lettini e ombrelloni",
+    "pagina": "/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-piscina",
+    "alt": "Piscina del Residence Soleluna con ombrelloni e lettini",
+    "diritti": "da verificare, ripresa dal sito attuale"
+  },
+  {
+    "file": "lido.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/01-Home/Residence-Praia-Mare-Servizi-02.jpg",
+    "soggetto": "Lido con ombrelloni e mare",
+    "pagina": "/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-lido-navetta",
+    "alt": "Lido con ombrelloni gialli e blu, lettini e il mare",
+    "diritti": "da verificare, ripresa dal sito attuale"
+  },
+  {
+    "file": "animazione.jpg",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/01-Home/Residence-Praia-Mare-Servizi-01.jpg",
+    "soggetto": "Spettacolo serale in piscina",
+    "pagina": "/residence-calabria-piscina-animazione-lido",
+    "alt": "Spettacolo serale in piscina al Residence Soleluna",
+    "diritti": "da verificare, ripresa dal sito attuale"
+  },
+  {
+    "file": "icone/",
+    "sorgente": "https://www.residencesoleluna.it/images/SoleLuna/00-Icone/",
+    "soggetto": "Icone animazione, lido, navetta, parcheggio",
+    "pagina": "/",
+    "alt": "",
+    "diritti": "da verificare, riprese dal sito attuale"
+  }
+]

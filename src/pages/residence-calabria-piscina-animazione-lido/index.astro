@@ -1,0 +1,96 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CloseBand from '../../components/CloseBand.astro';
+import Missing from '../../components/Missing.astro';
+import { photos } from '../../data/site';
+
+const title = 'Piscina, animazione e lido | Residence Soleluna';
+const description =
+  'Servizi del Residence Soleluna a Praia a Mare: piscina per gli ospiti, animazione, lido Point Break, navetta, parcheggio e spazio giochi.';
+const path = '/residence-calabria-piscina-animazione-lido';
+
+const blocks = [
+  {
+    id: 'piscina',
+    title: 'Piscina',
+    text: 'Riservata agli ospiti, con chiosco bar, lettini, ombrelloni e docce.',
+    href: '/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-piscina',
+    link: 'Scheda piscina',
+    photo: photos.piscina,
+    icon: '',
+  },
+  {
+    id: 'animazione',
+    title: 'Animazione',
+    text: 'Per adulti e bambini, tutti i giorni.',
+    photo: photos.animazione,
+    icon: '/images/icone/Residence-Praia-Mare-animazione.png',
+  },
+  {
+    id: 'lido',
+    title: 'Lido e navetta',
+    text: 'Lido convenzionato Point Break. Navetta gratuita per la spiaggia: orari da riconfermare.',
+    href: '/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-lido-navetta',
+    link: 'Scheda lido e navetta',
+    photo: photos.lido,
+    icon: '/images/icone/Residence-Praia-Mare-lido-convenzionato.png',
+  },
+  {
+    id: 'giochi',
+    title: 'Giochi e barbecue',
+    text: 'Nel residence c’è uno spazio giochi. I dettagli su giochi e barbecue non sono ancora stati riletti dalla pagina attuale.',
+    photo: undefined,
+    icon: '',
+  },
+  {
+    id: 'parcheggio',
+    title: 'Parcheggio e lavanderia',
+    text: 'Parcheggio interno con telecomando per il cancello. In menu la lavanderia è indicata come self-service.',
+    href: '/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-parcheggio-privato-lavanderia',
+    link: 'Scheda parcheggio e lavanderia',
+    photo: undefined,
+    icon: '/images/icone/Residence-Praia-Mare-parcheggio.png',
+  },
+];
+---
+
+<Base title={title} description={description} path={path}>
+  <PageHero
+    title="Servizi"
+    lede="Piscina, animazione, lido, navetta, parcheggio e spazio giochi."
+    tone="cielo"
+    crumbs={[
+      { href: '/', label: 'Home' },
+      { label: 'Servizi' },
+    ]}
+    photo={photos.animazione}
+  />
+  <section class="stack">
+    <div class="wrap">
+      <div class="card-grid">
+        {
+          blocks.map((block) => (
+            <article class="info-card" id={block.id}>
+              {block.photo && (
+                <img src={block.photo.src} alt={block.photo.alt} />
+              )}
+              <div>
+                {block.icon && <img class="fact-icon" src={block.icon} alt="" width="40" height="40" />}
+                <h2>{block.title}</h2>
+                <p>{block.text}</p>
+                {block.href && block.link && (
+                  <p>
+                    <a href={block.href}>{block.link}</a>
+                  </p>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+      <Missing subject="le pagine dei servizi" />
+    </div>
+  </section>
+  <CloseBand />
+</Base>

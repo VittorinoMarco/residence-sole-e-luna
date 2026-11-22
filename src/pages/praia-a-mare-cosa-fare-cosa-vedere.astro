@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CloseBand from '../components/CloseBand.astro';
+import Missing from '../components/Missing.astro';
+
+const path = '/praia-a-mare-cosa-fare-cosa-vedere';
+---
+
+<Base
+  title="Cosa vedere a Praia a Mare | Residence Soleluna"
+  description="Cosa vedere intorno al Residence Soleluna, a Praia a Mare. Il testo della pagina attuale non è ancora stato ricopiato."
+  path={path}
+>
+  <PageHero
+    title="Cosa vedere"
+    lede="Praia a Mare è sulla costa tirrenica calabrese, sul golfo di Policastro. Il residence dista circa 1 km dal centro e dalla spiaggia."
+    tone="paper"
+    crumbs={[
+      { href: '/', label: 'Home' },
+      { href: '/praia-a-mare-cosa-fare', label: 'Praia a Mare' },
+      { label: 'Cosa vedere' },
+    ]}
+  />
+  <section class="stack">
+    <div class="wrap">
+      <Missing subject="la pagina cosa vedere" />
+    </div>
+  </section>
+  <CloseBand />
+</Base>

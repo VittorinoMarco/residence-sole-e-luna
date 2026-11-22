@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CloseBand from '../../components/CloseBand.astro';
+import Missing from '../../components/Missing.astro';
+import { homeIntro, photos } from '../../data/site';
+
+const title = 'Il residence a Praia a Mare | Soleluna';
+const description =
+  'Residence Soleluna, recente costruzione a Praia a Mare: piscina, solarium e vista sul golfo di Policastro, a circa 1 km dal centro e dalla spiaggia.';
+const path = '/residence-case-vacanze-praia-a-mare';
+---
+
+<Base title={title} description={description} path={path}>
+  <PageHero
+    title="Il residence"
+    lede={homeIntro}
+    tone="cielo"
+    crumbs={[
+      { href: '/', label: 'Home' },
+      { label: 'Il residence' },
+    ]}
+    photo={photos.golfo}
+  />
+  <section class="stack">
+    <div class="wrap">
+      <h2>Cosa c’è</h2>
+      <ul>
+        <li>Piscina riservata agli ospiti, con chiosco bar, lettini, ombrelloni e docce.</li>
+        <li>Animazione per adulti e bambini, tutti i giorni.</li>
+        <li>Lido convenzionato Point Break.</li>
+        <li>36 appartamenti arredati.</li>
+        <li>Parcheggio interno con telecomando per il cancello.</li>
+        <li>Spazio giochi.</li>
+        <li>Navetta gratuita per la spiaggia. Gli orari sono da riconfermare.</li>
+      </ul>
+      <p class="actions">
+        <a class="btn btn-sea" href="/residence-case-vacanze-praia-a-mare/appartamenti-soleluna">Gli appartamenti</a>
+        <a href="/residence-calabria-piscina-animazione-lido">I servizi</a>
+      </p>
+      <Missing subject="la pagina Il residence" />
+    </div>
+  </section>
+  <CloseBand />
+</Base>

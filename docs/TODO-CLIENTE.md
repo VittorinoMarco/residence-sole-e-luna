@@ -26,6 +26,14 @@ Segna `[x]` quando arriva. Incontro: 23/11/2026.
 - [ ] Form preventivo: campi, destinatario, privacy
 - [ ] Quanti preventivi arrivano oggi al mese e da quali canali (per il confronto prima/dopo)
 
+## Emersi costruendo il sito (22/11/2026)
+- [ ] Testo integrale delle pagine non ancora rilette: Il residence, servizi, Praia a Mare, cosa vedere, campi del form
+- [ ] Consenso a pubblicare le 4 recensioni e i link alle fonti
+- [ ] Endpoint che riceve il preventivo (`PUBLIC_QUOTE_ENDPOINT`): oggi il form valida e dice che l’invio non è collegato
+- [ ] Coordinate verificate per incorporare la mappa
+- [ ] URL della pagina Facebook del Lido Point Break
+- [ ] Conferma del redirect provvisorio di `/offerte-residence-calabria-praia-scalea` verso la home
+
 ## Decisioni
 - [ ] Hosting finale e proprietà degli account (repo, dominio, hosting)
 - [ ] Dominio preferito (con o senza www)

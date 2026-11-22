@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CloseBand from '../../components/CloseBand.astro';
+import Missing from '../../components/Missing.astro';
+
+const path =
+  '/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-parcheggio-privato-lavanderia';
+---
+
+<Base
+  title="Parcheggio e lavanderia | Residence Soleluna"
+  description="Parcheggio interno con telecomando per il cancello e lavanderia self-service al Residence Soleluna di Praia a Mare."
+  path={path}
+>
+  <PageHero
+    title="Parcheggio e lavanderia"
+    lede="Il parcheggio è interno e il cancello si apre con il telecomando. In menu la lavanderia è indicata come self-service."
+    tone="paper"
+    crumbs={[
+      { href: '/', label: 'Home' },
+      { href: '/residence-calabria-piscina-animazione-lido', label: 'Servizi' },
+      { label: 'Parcheggio e lavanderia' },
+    ]}
+  />
+  <section class="stack">
+    <div class="wrap">
+      <p class="shot-note">Foto in attesa: parcheggio interno e lavanderia.</p>
+      <Missing subject="la pagina parcheggio e lavanderia" />
+    </div>
+  </section>
+  <CloseBand />
+</Base>

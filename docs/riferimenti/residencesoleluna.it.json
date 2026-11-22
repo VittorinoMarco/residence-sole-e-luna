@@ -1,0 +1,83 @@
+{
+  "source": {
+    "url": "https://www.residencesoleluna.it/",
+    "pages": 1,
+    "viewport": [1440, 900],
+    "pageHeight": 5092,
+    "use": "colori e marchio, non la composizione del template"
+  },
+  "tokens": {
+    "spacing": {
+      "base_unit": 5,
+      "scale_px": [5, 10, 15, 20, 40, 50, 100],
+      "header_px": 90
+    },
+    "typography": {
+      "families": {
+        "display": "Roboto Slab",
+        "eyebrow": "Rajdhani",
+        "body": "Roboto",
+        "logo": "Arial Narrow"
+      },
+      "scale": {
+        "eyebrow": { "size": "20px", "weight": 700, "family": "Rajdhani", "letterSpacing": "1px", "color": "#1953FF" },
+        "body": { "size": "20px", "weight": 500, "lineHeight": "32px", "family": "Roboto", "color": "#4C5364" },
+        "h2": { "size": "65px", "weight": 900, "lineHeight": "71.5px", "family": "Roboto Slab", "color": "#00194C" }
+      }
+    },
+    "colors": [
+      { "role": "gold", "value": "#F9C043" },
+      { "role": "sea", "value": "#1D65AC" },
+      { "role": "ink", "value": "#00194C" },
+      { "role": "body", "value": "#3F4654" },
+      { "role": "body-2", "value": "#4C5364" },
+      { "role": "paper", "value": "#F7F8FC" },
+      { "role": "sky", "value": "#F2FBFF" },
+      { "role": "white", "value": "#FFFFFF" },
+      { "role": "template-blue-non-usare", "value": "#1953FF" }
+    ],
+    "radius": {
+      "buttons": "0px",
+      "small": "5px",
+      "card": "20px"
+    },
+    "shadows": [
+      "rgba(0, 0, 0, 0.15) 0px 0px 0px 1px"
+    ],
+    "image_ratios": ["hero 1061px su larghezza piena"],
+    "grid": {
+      "header_px": 90,
+      "hero_px": 1061
+    }
+  },
+  "taste": [
+    {
+      "name": "Due rettangoli, oro e blu",
+      "trigger": "Due azioni affiancate nel hero",
+      "decision": "Rettangolo #F9C043 e rettangolo #1D65AC, radius 0, testo bianco",
+      "reason": "Sole e blu del marchio diventano i due pulsanti",
+      "evidence": ["149×54 #F9C043", "117×54 #1D65AC", "padding 14px 30px", "radius 0"]
+    },
+    {
+      "name": "Il nome è un blocco pesante",
+      "trigger": "Il nome nel primo schermo",
+      "decision": "Roboto Slab 65px peso 900 #00194C, sopracciglio Rajdhani 20px #1953FF",
+      "reason": "Il nome è l’oggetto più scuro sul campo chiaro",
+      "evidence": ["H2 65px/900", "H3 20px/700 letter-spacing 1px"]
+    },
+    {
+      "name": "Campo chiaro, poi fasce piatte",
+      "trigger": "Passare dal racconto ai servizi e al contatto",
+      "decision": "Hero su foto chiara, poi bianco, #F2FBFF, fascia gialla, footer #00194C",
+      "reason": "Il colore di marca sta in blocchi pieni",
+      "evidence": ["hero 1061px", "sezione 1326px #F2FBFF", "footer 468px #00194C"]
+    },
+    {
+      "name": "L’oro sta nel segno",
+      "trigger": "Colorare un’azione o la parola SOLELUNA",
+      "decision": "#F9C043 sul wordmark e sul pulsante primario; i fondi grandi restano chiari o navy",
+      "reason": "L’oro si vede perché è poco",
+      "evidence": ["SVG SOLELUNA rgb(249, 192, 67)", "header #F7F8FC"]
+    }
+  ]
+}

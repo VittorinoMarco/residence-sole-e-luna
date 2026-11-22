@@ -1,0 +1,43 @@
+---
+interface Crumb {
+  href?: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  lede: string;
+  tone?: 'cielo' | 'paper' | 'mare' | 'inchiostro';
+  crumbs: Crumb[];
+  photo?: { src: string; alt: string };
+}
+
+const { title, lede, tone = 'cielo', crumbs, photo } = Astro.props;
+---
+
+<section class:list={['page-hero', `tone-${tone}`, photo && 'has-photo']}>
+  <div class="wrap">
+    <div>
+      <nav class="crumbs" aria-label="Percorso">
+        <ol>
+          {
+            crumbs.map((crumb, index) => (
+              <li>
+                {crumb.href && index < crumbs.length - 1 ? <a href={crumb.href}>{crumb.label}</a> : <span>{crumb.label}</span>}
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+      <h1>{title}</h1>
+      <p class="lede">{lede}</p>
+    </div>
+    {
+      photo && (
+        <div class="photo-shape">
+          <img src={photo.src} alt={photo.alt} />
+        </div>
+      )
+    }
+  </div>
+</section>
