@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site';
+import PageHero from '../components/PageHero.astro';
+import { photos, site } from '../data/site';
 ---
 
 <Base
@@ -8,11 +9,19 @@ import { site } from '../data/site';
   description="Questa pagina non c’è. Torna alla home del Residence Soleluna o chiama il residence."
   path="/404"
 >
-  <section class="page-hero">
+  <PageHero
+    title="Questa pagina non c’è"
+    lede="Il percorso non corrisponde a una pagina del residence."
+    crumbs={[
+      { href: '/', label: 'Home' },
+      { label: 'Pagina non trovata' },
+    ]}
+    photo={photos.golfo}
+    focus="50% 60%"
+  />
+  <section class="section">
     <div class="wrap">
-      <h1>Questa pagina non c’è</h1>
-      <p class="lede">Il percorso non corrisponde a una pagina del residence.</p>
-      <p class="actions">
+      <p class="actions" style="justify-content:center">
         <a class="btn" href="/">Torna alla home</a>
         <a class="btn btn-ghost" href={site.phones[0].href}>Chiama</a>
       </p>

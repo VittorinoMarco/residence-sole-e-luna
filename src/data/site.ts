@@ -27,6 +27,7 @@ export const nav = [
   { href: '/residence-calabria-piscina-animazione-lido', label: 'Servizi' },
   { href: '/praia-a-mare-cosa-fare', label: 'Praia a Mare' },
   { href: '/praia-a-mare-cosa-fare-cosa-vedere', label: 'Attività' },
+  { href: '/offerte-residence-calabria-praia-scalea', label: 'Offerte' },
   { href: '/contatti', label: 'Contatti' },
 ] as const;
 
@@ -40,6 +41,8 @@ export const paths = {
     '/residence-calabria-piscina-animazione-lido/residence-calabria-praia-a-mare-parcheggio-privato-lavanderia',
   town: '/praia-a-mare-cosa-fare',
   activities: '/praia-a-mare-cosa-fare-cosa-vedere',
+  offers: '/offerte-residence-calabria-praia-scalea',
+  blog: '/blog',
   contact: '/contatti',
 } as const;
 
@@ -59,6 +62,10 @@ export const photos = {
   panorama: img(
     '/images/residence/head.jpg',
     'Piscina e appartamenti del Residence Soleluna visti dall’alto, con i monti sullo sfondo',
+  ),
+  verticale: img(
+    '/images/piscina.jpg',
+    'Piscina del Residence Soleluna con ombrelloni blu, lettini e le palazzine sullo sfondo',
   ),
   giorno: img(
     '/images/piscina/promo-1.jpg',
@@ -108,8 +115,8 @@ export const chapters = [
     text: 'Riservata agli ospiti, con ampio solarium, chiosco bar, lettini, ombrelloni e docce. Un assistente alla balneazione è sempre presente.',
     href: paths.pool,
     link: 'La piscina',
-    photo: photos.giorno,
-    focus: '50% 60%',
+    photo: photos.verticale,
+    focus: '50% 38%',
   },
   {
     id: 'sera',
@@ -259,3 +266,176 @@ export const activities = [
     text: 'Il rafting sul fiume Lao, adatto a tutta la famiglia, con percorsi pensati anche per i più piccoli.',
   },
 ] as const;
+
+/** Piantine con punti cliccabili. Le posizioni (x, y in %) sono lette sulle foto: il cliente le conferma. */
+export const maps = [
+  {
+    id: 'residence',
+    label: 'Il residence',
+    ratio: 1.583,
+    photo: photos.panorama,
+    spots: [
+      {
+        id: 'piscina',
+        name: 'Piscina',
+        x: 45,
+        y: 63,
+        text: 'Riservata agli ospiti, con ampio solarium, chiosco bar, lettini, ombrelloni e docce. Un assistente alla balneazione è sempre presente.',
+        href: paths.pool,
+        link: 'La piscina',
+      },
+      {
+        id: 'solarium',
+        name: 'Solarium',
+        x: 17,
+        y: 57,
+        text: 'Lettini e ombrelloni intorno alla vasca, per stare al sole senza allontanarsi dagli appartamenti.',
+        href: paths.pool,
+        link: 'Piscina e solarium',
+      },
+      {
+        id: 'appartamenti',
+        name: 'Appartamenti',
+        x: 46,
+        y: 34,
+        text: '36 appartamenti: bilocali, trilocali e quadrilocali. Una parte è al piano rialzato, con terrazzo indipendente, una al primo piano, con terrazzo anteriore e posteriore.',
+        href: paths.apartments,
+        link: 'Gli appartamenti',
+      },
+      {
+        id: 'parcheggio',
+        name: 'Parcheggio interno',
+        x: 77,
+        y: 41,
+        text: 'Parcheggio interno al residence, con telecomando per il cancello.',
+        href: paths.parking,
+        link: 'Parcheggio e lavanderia',
+      },
+      {
+        id: 'serate',
+        name: 'Serate in piscina',
+        x: 79,
+        y: 82,
+        text: 'L’animazione c’è tutti i giorni, per adulti e bambini: spettacoli, miniclub, serate giochi, karaoke, aquagym e balli di gruppo.',
+        href: `${paths.services}#animazione`,
+        link: 'L’animazione',
+      },
+    ],
+  },
+  {
+    id: 'golfo',
+    label: 'Il golfo',
+    ratio: 1.047,
+    photo: photos.golfo,
+    spots: [
+      {
+        id: 'isola-dino',
+        name: 'Isola Dino',
+        x: 52,
+        y: 28,
+        text: 'Scoglio più grande del Mediterraneo o isola più piccola del Mar Tirreno: rocce calcaree, gite in barca e immersioni. Da visitare le grotte.',
+        href: `${paths.town}#isola-dino`,
+        link: 'Isola Dino',
+      },
+      {
+        id: 'praia',
+        name: 'Praia a Mare',
+        x: 58,
+        y: 34,
+        text: 'Il centro e la spiaggia sono a circa 1 km dal residence. Il mare incontaminato, il Viale delle Libertà e più di 4 km di lungomare.',
+        href: paths.town,
+        link: 'Cosa vedere',
+      },
+      {
+        id: 'residence',
+        name: 'Il residence',
+        x: 83,
+        y: 55,
+        text: 'In posizione tranquilla e panoramica, sopra il golfo di Policastro. Il lido Point Break è in convenzione e la navetta per la spiaggia è gratuita.',
+        href: paths.beach,
+        link: 'Lido e navetta',
+      },
+    ],
+  },
+] as const;
+
+export const faq = [
+  {
+    tags: ['home', 'pool'],
+    q: 'La piscina è riservata agli ospiti?',
+    a: 'Sì. Ha un ampio solarium, il chiosco bar, lettini, ombrelloni e docce. Un assistente alla balneazione è sempre presente.',
+  },
+  {
+    tags: ['home', 'beach'],
+    q: 'Quanto è lontano il mare?',
+    a: 'Il centro di Praia a Mare e la spiaggia sono a circa 1 km. Il servizio spiaggia è in convenzione con il lido Point Break e la navetta è gratuita.',
+  },
+  {
+    tags: ['home', 'parking'],
+    q: 'C’è un parcheggio?',
+    a: 'Sì, il parcheggio è interno al residence e il cancello si apre con il telecomando.',
+  },
+  {
+    tags: ['home', 'pool'],
+    q: 'C’è animazione?',
+    a: 'Sì, tutti i giorni, per adulti e bambini: spettacoli, miniclub, serate giochi, karaoke, aquagym e balli di gruppo.',
+  },
+  {
+    tags: ['home', 'apartments'],
+    q: 'Come sono gli appartamenti?',
+    a: 'Sono 36, tra bilocali, trilocali e quadrilocali da 2 a 8 letti. Hanno cucina, aria condizionata nel soggiorno e terrazzo attrezzato. Sono adatti a famiglie, coppie e gruppi di amici.',
+  },
+  {
+    tags: ['home', 'apartments', 'offers'],
+    q: 'Come chiedo un preventivo?',
+    a: 'Scrivi le date e quante persone siete con il modulo di questa pagina, oppure chiama uno dei due numeri. Ti rispondiamo con il preventivo.',
+  },
+] as const;
+
+/** Link «continua» in fondo alle pagine interne. */
+export const nextPages = {
+  residence: { href: paths.apartments, label: 'Gli appartamenti', photo: photos.bilocale },
+  apartments: { href: paths.services, label: 'Servizi', photo: photos.giorno },
+  services: { href: paths.town, label: 'Praia a Mare', photo: photos.golfo },
+  pool: { href: `${paths.services}#animazione`, label: 'L’animazione', photo: nightPool[1] },
+  beach: { href: paths.parking, label: 'Parcheggio e lavanderia', photo: photos.facciata },
+  parking: { href: paths.beach, label: 'Lido e navetta', photo: photos.lido },
+  town: { href: paths.activities, label: 'Attività', photo: photos.golfo },
+  activities: { href: paths.offers, label: 'Offerte', photo: photos.panorama },
+  offers: { href: paths.blog, label: 'Il blog', photo: photos.lido },
+  blog: { href: paths.contact, label: 'Contatti', photo: photos.panorama },
+} as const;
+
+/** Servizi della home, con i testi del sito attuale. */
+export const services: readonly { icon: IconName; title: string; text: string; href: string }[] = [
+  {
+    icon: 'pool',
+    title: 'Piscina',
+    text: 'Situata nella parte centrale del residence, è riservata ai soli ospiti, con ampio solarium e chiosco bar.',
+    href: paths.pool,
+  },
+  {
+    icon: 'star',
+    title: 'Animazione',
+    text: 'Presente tutti i giorni, sia per adulti che per bambini, svolta da personale professionale e mai invadente.',
+    href: `${paths.services}#animazione`,
+  },
+  {
+    icon: 'umbrella',
+    title: 'Lido convenzionato',
+    text: 'Il servizio spiaggia in convenzione con il lido Point Break, sulla spiaggia di Praia a Mare.',
+    href: paths.beach,
+  },
+  {
+    icon: 'bus',
+    title: 'Navetta da e per la spiaggia',
+    text: 'Una comoda navetta gratuita per la spiaggia, a disposizione degli ospiti.',
+    href: paths.beach,
+  },
+  {
+    icon: 'car',
+    title: 'Parcheggio',
+    text: 'Ogni ospite ha a disposizione un telecomando per accedere al cancello carrabile del residence.',
+    href: paths.parking,
+  },
+];

@@ -1,0 +1,94 @@
+---
+import { maps } from '../data/site';
+
+interface Props {
+  first?: string;
+}
+
+const { first } = Astro.props;
+const ordered = first ? [...maps].sort((a, b) => (a.id === first ? -1 : b.id === first ? 1 : 0)) : [...maps];
+
+// Ritaglio della foto centrato sul punto: la scheda mostra il dettaglio ingrandito 3,2 volte.
+const zoom = 3.2;
+const pos = (fraction: number, scale: number) =>
+  Math.round(Math.min(1, Math.max(0, (fraction * scale - 0.5) / (scale - 1))) * 1000) / 10;
+---
+
+<div class="map" data-map>
+  <div class="map-tabs" role="tablist" aria-label="Vista della piantina">
+    {
+      ordered.map((map, index) => (
+        <button
+          class="map-tab"
+          role="tab"
+          type="button"
+          id={`tab-${map.id}`}
+          aria-controls={`stage-${map.id}`}
+          aria-selected={index === 0 ? 'true' : 'false'}
+          data-map-tab={map.id}
+        >
+          {map.label}
+        </button>
+      ))
+    }
+  </div>
+
+  {
+    ordered.map((map, index) => (
+      <div class="map-view" id={`stage-${map.id}`} role="tabpanel" aria-labelledby={`tab-${map.id}`} data-map-view={map.id} hidden={index > 0}>
+        <div class="map-stage">
+          <div class="map-photo mask mask-soft no-parallax">
+            <img src={map.photo.src} alt={map.photo.alt} loading="lazy" />
+          </div>
+          <ol class="map-spots">
+            {map.spots.map((spot, n) => (
+              <li style={`--x:${spot.x}%;--y:${spot.y}%`}>
+                <button
+                  class="spot"
+                  type="button"
+                  data-spot={spot.id}
+                  aria-controls={`panel-${map.id}-${spot.id}`}
+                  aria-label={spot.name}
+                >
+                  <span class="spot-dot">{n + 1}</span>
+                  <span class="spot-name">{spot.name}</span>
+                </button>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div class="map-side">
+          <ol class="map-legend">
+            {map.spots.map((spot, n) => (
+              <li>
+                <button class="legend-item" type="button" data-legend={spot.id}>
+                  <span class="legend-n">{n + 1}</span>
+                  {spot.name}
+                </button>
+              </li>
+            ))}
+          </ol>
+          <div class="map-panels" aria-live="polite">
+            {map.spots.map((spot, n) => (
+              <article
+                class="spot-panel"
+                id={`panel-${map.id}-${spot.id}`}
+                data-panel={spot.id}
+                style={`--px:${pos(spot.x / 100, zoom)}%;--py:${pos(spot.y / 100, zoom / map.ratio / 0.625)}%;--img:url(${map.photo.src})`}
+              >
+                <div class="spot-crop" aria-hidden="true"></div>
+                <div class="spot-body">
+                  <p class="kicker">Punto {n + 1}</p>
+                  <h3>{spot.name}</h3>
+                  <p>{spot.text}</p>
+                  <a class="more" href={spot.href}>{spot.link}</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

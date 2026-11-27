@@ -1,0 +1,25 @@
+---
+interface Photo {
+  src: string;
+  alt: string;
+  focus?: string;
+}
+
+interface Props {
+  photos: [Photo, Photo, Photo];
+}
+
+const { photos } = Astro.props;
+// Velocità diverse allo scroll: la foto centrale sale più delle altre, come nel gruppo foto di vineyard.
+const drift = [-30, -80, -10];
+---
+
+<div class="media-group">
+  {
+    photos.map((photo, index) => (
+      <figure class={`mg mg-${index + 1} reveal`} data-drift={drift[index]}>
+        <img src={photo.src} alt={photo.alt} loading="lazy" style={`object-position:${photo.focus ?? '50% 50%'}`} />
+      </figure>
+    ))
+  }
+</div>

@@ -7,39 +7,42 @@ interface Crumb {
 interface Props {
   title: string;
   lede: string;
-  tone?: 'paper' | 'sand' | 'mist' | 'ink';
   crumbs: Crumb[];
-  photo?: { src: string; alt: string };
+  photo: { src: string; alt: string };
+  focus?: string;
+  tone?: 'paper' | 'sand' | 'mist';
+  kicker?: string;
 }
 
-const { title, lede, tone = 'paper', crumbs, photo } = Astro.props;
+const { title, lede, tone = 'paper', crumbs, photo, focus = '50% 50%', kicker } = Astro.props;
 ---
 
-<section class:list={['page-hero', `tone-${tone}`, photo && 'has-photo']}>
-  <div class="wrap">
-    <nav class="crumbs" aria-label="Percorso">
-      <ol>
-        {
-          crumbs.map((crumb, index) => (
-            <li>
-              {crumb.href && index < crumbs.length - 1 ? <a href={crumb.href}>{crumb.label}</a> : <span>{crumb.label}</span>}
-            </li>
-          ))
-        }
-      </ol>
-    </nav>
-    <div class="page-hero-grid">
-      <div>
-        <h1>{title}</h1>
-        <p class="lede">{lede}</p>
-      </div>
+<section class="page-hero" data-page-hero>
+  <figure class="ph-media" aria-hidden="false">
+    <span class="ph-inner" data-ph-inner>
+      <img src={photo.src} alt={photo.alt} fetchpriority="high" style={`object-position:${focus}`} />
+    </span>
+  </figure>
+  <div class="ph-shade" aria-hidden="true"></div>
+  <div class="wrap ph-content" data-ph-content>
+    <h1>{title}</h1>
+  </div>
+  <nav class="crumbs ph-crumbs" aria-label="Percorso">
+    <ol>
       {
-        photo && (
-          <div class="mask mask-stadium">
-            <img src={photo.src} alt={photo.alt} fetchpriority="high" />
-          </div>
-        )
+        crumbs.map((crumb, index) => (
+          <li>
+            {crumb.href && index < crumbs.length - 1 ? <a href={crumb.href}>{crumb.label}</a> : <span>{crumb.label}</span>}
+          </li>
+        ))
       }
-    </div>
+    </ol>
+  </nav>
+</section>
+
+<section class:list={['page-intro', `tone-${tone}`]}>
+  <div class="wrap">
+    {kicker && <p class="kicker reveal">{kicker}</p>}
+    <p class="lede reveal">{lede}</p>
   </div>
 </section>

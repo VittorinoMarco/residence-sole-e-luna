@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import PostCard from '../../components/PostCard.astro';
+import CloseBand from '../../components/CloseBand.astro';
+import { posts } from '../../data/posts';
+import { photos } from '../../data/site';
+
+const categories = [...new Set(posts.map((post) => post.category))];
+---
+
+<Base
+  title="Blog | Luoghi, mare e vita al Residence Soleluna"
+  description="Il blog del Residence Soleluna: Isola Dino, Arcomagno, Maratea, Diamante e la vita al residence a Praia a Mare."
+  path="/blog"
+>
+  <PageHero
+    title="Il blog"
+    kicker="Diario dal golfo"
+    lede="Luoghi da vedere, mare e vita al residence, a Praia a Mare e dintorni."
+    crumbs={[
+      { href: '/', label: 'Home' },
+      { label: 'Blog' },
+    ]}
+    photo={photos.golfo}
+    focus="50% 55%"
+  />
+
+  <section class="section blog-list" aria-label="Articoli">
+    <div class="wrap">
+      <div class="filters" role="group" aria-label="Filtra per tema" data-filters>
+        <button type="button" class="chip-btn is-active" data-filter="all">Tutti</button>
+        {categories.map((category) => <button type="button" class="chip-btn" data-filter={category}>{category}</button>)}
+      </div>
+      <ul class="post-grid" data-posts>
+        {posts.map((post) => <PostCard post={post} />)}
+      </ul>
+    </div>
+  </section>
+
+  <CloseBand />
+</Base>
+
+<script>
+  function initFilters() {
+    const root = document.querySelector<HTMLElement>('[data-filters]');
+    const list = document.querySelector<HTMLElement>('[data-posts]');
+    if (!root || !list || root.dataset.ready) return;
+    root.dataset.ready = 'true';
+    root.addEventListener('click', (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-filter]');
+      if (!button) return;
+      const value = button.dataset.filter;
+      root.querySelectorAll('[data-filter]').forEach((el) => el.classList.toggle('is-active', el === button));
+      list.querySelectorAll<HTMLElement>('[data-category]').forEach((card) => {
+        card.hidden = value !== 'all' && card.dataset.category !== value;
+      });
+    });
+  }
+  document.addEventListener('astro:page-load', initFilters);
+  initFilters();
+</script>

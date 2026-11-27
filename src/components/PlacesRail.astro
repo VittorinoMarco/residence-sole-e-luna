@@ -1,0 +1,33 @@
+---
+import { paths, places } from '../data/site';
+
+const slug = (value: string) => value.toLowerCase().replace(/\s+/g, '-');
+---
+
+<div class="rail" data-rail>
+  <ul class="rail-track" data-rail-track tabindex="0" aria-label="Luoghi nei dintorni">
+    {
+      places.map((place, index) => (
+        <li class="rail-card">
+          <p class="rail-n">{String(index + 1).padStart(2, '0')}</p>
+          <h3>{place.name}</h3>
+          <p>{place.text}</p>
+          <a class="more" href={`${paths.town}#${slug(place.name)}`} aria-label={`${place.name}: leggi di più`}>
+            Leggi di più
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="rail-bar">
+    <div class="rail-progress" aria-hidden="true"><span data-rail-progress></span></div>
+    <div class="rail-buttons">
+      <button class="rail-btn" type="button" data-rail-prev aria-label="Luoghi precedenti">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l-6 6 6 6" /></svg>
+      </button>
+      <button class="rail-btn" type="button" data-rail-next aria-label="Luoghi successivi">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4l6 6-6 6" /></svg>
+      </button>
+    </div>
+  </div>
+</div>

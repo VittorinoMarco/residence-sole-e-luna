@@ -7,9 +7,11 @@ interface Props {
 
 const { path } = Astro.props;
 const current = path.replace(/\/$/, '') || '/';
+// Tutte le pagine tranne l'articolo del blog partono con una foto a tutta larghezza sotto il menu.
+const hasHero = !/^\/blog\/.+/.test(current);
 ---
 
-<header class:list={['site-header', current === '/' && 'is-clear']}>
+<header class:list={['site-header', hasHero && 'is-clear']}>
   <div class="header-inner">
     <a class="logo" href="/" aria-label="Residence Soleluna, home">
       <svg viewBox="0 0 32 32" aria-hidden="true">
@@ -75,12 +77,13 @@ const current = path.replace(/\/$/, '') || '/';
     nav?.querySelector<HTMLElement>('a')?.focus();
   }
 
-  const header = document.querySelector('.site-header');
   const syncHeader = () => {
-    const home = location.pathname === '/';
-    header?.classList.toggle('is-clear', home && window.scrollY < 32);
+    const header = document.querySelector('.site-header');
+    const hasHero = Boolean(document.querySelector('[data-shrink], [data-page-hero]'));
+    header?.classList.toggle('is-clear', hasHero && window.scrollY < 32);
   };
   syncHeader();
+  document.addEventListener('astro:page-load', syncHeader);
 
   if (!win.__navBound) {
     win.__navBound = true;

@@ -36,22 +36,25 @@ Sezioni 72px mobile, 120px da 1024px. Gutter 24px mobile, 40px da 768px. Conteni
 ## Forme
 
 - Pulsanti: pillola radius 40px, minimo 52px. Tre varianti: oro pieno, contorno inchiostro, contorno bianco sulle foto. Mare solo come secondario.
-- Foto: tre maschere. **Stadio** (radius 300px, cerchio negli hero interni) per i blocchi principali; **arco** (`999px 999px 20px 20px`) per le tre tipologie di appartamento; **morbida** (20px) per tutto il resto. Il raggio sta sul contenitore, le `img` restano a 0.
+- Foto: tre maschere. **Stadio** (radius 300px) per i blocchi principali; **arco** (`999px 999px 20px 20px`) per le tre tipologie di appartamento; **morbida** (20px) per tutto il resto. Il raggio sta sul contenitore, le `img` restano a 0.
 - Schede: fondo bianco, radius 24px, nessun bordo. Form: scheda bianca radius 28px, campi radius 14px.
 - Ombra: una sola, `0 8px 24px rgba(0, 25, 76, 0.08)`, sul form.
 
 ## Componenti e struttura della home
 
 1. Apertura: foto del golfo a tutta lastra che si ritira in un riquadro 208×208, poi titolo, testo e due pulsanti (invariata).
-2. Quattro fatti in fila con icone al tratto (piscina, animazione, navetta, parcheggio).
+2. Servizi a schede bianche sfalsate (titolo a sinistra, tre colonne con scarti verticali e drift diverso allo scroll), icone al tratto: piscina, animazione, lido, navetta, parcheggio.
 3. Blocco «Case vacanze con piscina»: foto a stadio + testo + due pulsanti.
+3b. Fascia «Il residence» a schermo pieno: la foto si apre da uno stadio a tutta lastra con lo scroll (clip-path), il testo compare a metà.
 4. Capitoli a schermo pieno, bloccati allo scroll: Piscina, Sera, Lido, Casa. La parola grande scorre al centro, in basso una frase vera e un pulsante.
 5. Appartamenti: tre archi con le foto degli interni.
-6. Praia a Mare e dintorni (fascia cielo): testo e lista di sei luoghi in Tenor Sans.
+6. Piantina (fascia sabbia): foto aerea con punti numerati cliccabili e scheda con ritaglio ingrandito; tab «Il residence» / «Il golfo». Poi Praia a Mare e dintorni (fascia cielo): carosello orizzontale dei sei luoghi. Poi FAQ (details nativo).
 7. Preventivo (fascia sabbia): telefoni grandi e form in scheda bianca.
 8. Footer inchiostro con il nome grande.
 
-Pagine interne: hero con breadcrumb, titolo, testo e foto in cerchio; poi blocchi a due colonne alternati, schede, galleria; chiusura con fascia inchiostro e telefono.
+Titoli h2 e h1 salgono parola per parola (`reveal.ts`); le foto nelle maschere hanno parallax lento (`parallax.ts`, da 768px). Footer con le quattro parole grandi.
+
+Pagine interne: hero a tutta larghezza come vineyard (foto alta 70svh che sale dal nero, titolo bianco centrato che sale parola per parola, parallax 0,15 della distanza di scroll, menu trasparente sopra, breadcrumb in basso a sinistra), poi fascia su carta con etichetta e testo centrato; poi blocchi a due colonne alternati, schede, galleria; FAQ della pagina, blocco «Continua» verso la pagina successiva, chiusura con fascia inchiostro e telefono. La pagina dei servizi ha un indice a pillole fisso sotto l’header; Il residence e Praia a Mare hanno la piantina.
 
 ## Motion
 
@@ -100,3 +103,9 @@ Card uguali con icona, eyebrow su ogni titolo, numeri 01 02 03, gradienti decora
 
 - **Notte in piscina.** Quasi tutto inchiostro, oro solo nel titolo. Scartata: il sito attuale e le foto vivono di luce, un sito notte nasconde il golfo.
 - **Tutta la home in orizzontale.** Scartata: il testo da indicizzare e il telefono diventano difficili da raggiungere. L’orizzontale resta solo sugli appartamenti, che sono tre pari.
+
+## Offerte e blog
+
+Offerte: hero a foto, schede ad arco sfalsate (0, 72, 144px) con prezzo in Tenor Sans grande, pillole «Sono inclusi». Un’offerta con data passata si mostra come «Terminata», mai come attuale (`src/data/offers.ts`).
+
+Blog: hero a foto, filtro a pillole, griglia a due colonne con la seconda sfalsata di 72px, foto alte con zoom lento al passaggio. Articolo: fascia cielo con «Tutti gli articoli», categoria, titolo, data e minuti di lettura, foto larga, indice fisso a sinistra, testo a 40rem, altri due articoli su sabbia.

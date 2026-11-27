@@ -4,4 +4,3 @@ source,target,status,reason
 /residence-calabria-praia-scalea,/contatti,301,Contatti legacy verso l'unica pagina contatti nuova
 /residence-calabria-praia-scalea/richiedi-preventivo,/contatti#preventivo,301,Form preventivo legacy
 /residence-calabria-praia-scalea/prenota,/contatti#preventivo,301,Prenota legacy: non c'è prenotazione online
-/offerte-residence-calabria-praia-scalea,/,301,Provvisorio: non esiste una pagina offerte. Da confermare con Search Console

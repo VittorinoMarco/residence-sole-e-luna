@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
+import NextPage from '../components/NextPage.astro';
 import CloseBand from '../components/CloseBand.astro';
 import { activities, paths, photos } from '../data/site';
 
@@ -15,13 +16,13 @@ const path = paths.activities;
   <PageHero
     title="Cosa fare a Praia a Mare"
     lede="Il residence è convenzionato con centri sportivi esterni per rafting, parapendio, quad, diving e scuola sub."
-    tone="mist"
     crumbs={[
       { href: '/', label: 'Home' },
       { href: paths.town, label: 'Praia a Mare' },
       { label: 'Attività' },
     ]}
-    photo={photos.golfo}
+    photo={photos.lido}
+    focus="50% 30%"
   />
 
   <section class="section">
@@ -42,6 +43,8 @@ const path = paths.activities;
       </p>
     </div>
   </section>
+
+  <NextPage to="activities" />
 
   <CloseBand />
 </Base>

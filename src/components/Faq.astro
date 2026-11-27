@@ -1,0 +1,35 @@
+---
+import { faq } from '../data/site';
+
+interface Props {
+  tag: string;
+  title?: string;
+}
+
+const { tag, title = 'Informazioni utili' } = Astro.props;
+const items = faq.filter((item) => (item.tags as readonly string[]).includes(tag));
+---
+
+{
+  items.length > 0 && (
+    <section class="section section-faq" aria-labelledby={`faq-${tag}`}>
+      <div class="wrap faq-grid">
+        <header class="reveal">
+          <p class="kicker">Domande</p>
+          <h2 id={`faq-${tag}`}>{title}</h2>
+        </header>
+        <div class="faq-list reveal">
+          {items.map((item) => (
+            <details class="faq-item" name={`faq-${tag}`}>
+              <summary>
+                <span>{item.q}</span>
+                <span class="faq-plus" aria-hidden="true" />
+              </summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

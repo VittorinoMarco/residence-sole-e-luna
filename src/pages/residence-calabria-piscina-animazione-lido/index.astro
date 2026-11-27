@@ -1,9 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
+import Faq from '../../components/Faq.astro';
+import NextPage from '../../components/NextPage.astro';
 import CloseBand from '../../components/CloseBand.astro';
 import Icon from '../../components/Icon.astro';
-import { paths, photos, type IconName } from '../../data/site';
+import { nightPool, paths, photos, type IconName } from '../../data/site';
 
 const title = 'Piscina, animazione e lido | Residence Soleluna';
 const description =
@@ -76,13 +78,23 @@ const blocks: {
   <PageHero
     title="Servizi"
     lede="Piscina, animazione, lido, navetta, parcheggio e area giochi: quello che c’è nel residence e intorno, per una vacanza di qualità."
-    tone="mist"
     crumbs={[
       { href: '/', label: 'Home' },
       { label: 'Servizi' },
     ]}
-    photo={photos.giorno}
+    photo={nightPool[0]}
+    focus="50% 55%"
   />
+
+  <nav class="subnav" aria-label="In questa pagina">
+    <ul class="wrap">
+      <li><a href="#piscina">Piscina</a></li>
+      <li><a href="#animazione">Animazione</a></li>
+      <li><a href="#lido">Lido e navetta</a></li>
+      <li><a href="#giochi">Giochi e barbecue</a></li>
+      <li><a href="#parcheggio">Parcheggio</a></li>
+    </ul>
+  </nav>
 
   <section class="section">
     <div class="wrap">
@@ -114,6 +126,10 @@ const blocks: {
       }
     </div>
   </section>
+
+  <Faq tag="pool" />
+
+  <NextPage to="services" />
 
   <CloseBand />
 </Base>

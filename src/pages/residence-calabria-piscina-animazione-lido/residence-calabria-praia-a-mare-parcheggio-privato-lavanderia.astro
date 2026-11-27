@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
+import Faq from '../../components/Faq.astro';
+import NextPage from '../../components/NextPage.astro';
 import CloseBand from '../../components/CloseBand.astro';
 import Icon from '../../components/Icon.astro';
 import { paths, photos } from '../../data/site';
@@ -16,13 +18,13 @@ const path = paths.parking;
   <PageHero
     title="Parcheggio e lavanderia"
     lede="Un posto per l’auto dentro il residence e una lavanderia self-service, per stare comodi per tutta la vacanza."
-    tone="mist"
     crumbs={[
       { href: '/', label: 'Home' },
       { href: paths.services, label: 'Servizi' },
       { label: 'Parcheggio e lavanderia' },
     ]}
-    photo={photos.facciata}
+    photo={photos.panorama}
+    focus="50% 78%"
   />
 
   <section class="section">
@@ -44,6 +46,10 @@ const path = paths.parking;
       </ul>
     </div>
   </section>
+
+  <Faq tag="parking" />
+
+  <NextPage to="parking" />
 
   <CloseBand />
 </Base>

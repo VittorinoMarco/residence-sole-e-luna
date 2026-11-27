@@ -2,7 +2,12 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import QuoteForm from '../components/QuoteForm.astro';
-import { apartments, chapters, facts, homeIntro, paths, photos, places, site } from '../data/site';
+import ResidenceMap from '../components/ResidenceMap.astro';
+import PlacesRail from '../components/PlacesRail.astro';
+import Faq from '../components/Faq.astro';
+import PostCard from '../components/PostCard.astro';
+import { apartments, chapters, homeIntro, paths, photos, services, site } from '../data/site';
+import { posts } from '../data/posts';
 
 const title = 'Residence Soleluna a Praia a Mare | Piscina, lido e appartamenti';
 const description =
@@ -25,7 +30,6 @@ const jsonLd = {
   },
 };
 
-const slug = (value: string) => value.toLowerCase().replace(/\s+/g, '-');
 ---
 
 <Base title={title} description={description} path="/" jsonLd={jsonLd}>
@@ -48,41 +52,40 @@ const slug = (value: string) => value.toLowerCase().replace(/\s+/g, '-');
     </div>
   </section>
 
-  <section class="facts" aria-label="Nel residence">
-    <div class="wrap">
-      <ul class="fact-list">
-        {
-          facts.map((fact) => (
-            <li class="reveal">
-              <Icon name={fact.icon} />
-              <h2>{fact.title}</h2>
-              <p>{fact.text}</p>
-            </li>
-          ))
-        }
-      </ul>
+  <section class="section services" aria-labelledby="titolo-servizi">
+    <div class="wrap services-grid">
+      <header class="services-head reveal">
+        <p class="kicker">I nostri servizi</p>
+        <h2 id="titolo-servizi">Per una vacanza di qualità</h2>
+      </header>
+      {
+        services.map((service, index) => (
+          <article class={`service-card reveal pos-${index + 1}`} data-drift={[0, -30, -30, -60, -60][index]}>
+            <Icon name={service.icon} size={56} />
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
+            <a class="more" href={service.href}>Vai al servizio</a>
+          </article>
+        ))
+      }
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap split">
-      <div class="mask mask-stadium reveal">
-        <img src={photos.panorama.src} alt={photos.panorama.alt} loading="lazy" />
-      </div>
-      <div class="reveal">
-        <h2>Case vacanze con piscina, sul golfo di Policastro</h2>
-        <div class="prose">
-          <p>
-            Trentasei appartamenti arredati intorno alla piscina e al solarium, in una posizione tranquilla e panoramica.
-            Il centro di Praia a Mare e la spiaggia sono a circa 1 km.
-          </p>
-          <p>Per famiglie, coppie e gruppi di amici, con parcheggio interno e animazione tutti i giorni.</p>
-        </div>
-        <p class="actions">
-          <a class="btn btn-ghost" href={paths.residence}>Il residence</a>
-          <a class="btn btn-ghost" href={paths.apartments}>Gli appartamenti</a>
-        </p>
-      </div>
+  <section class="expand" data-expand aria-labelledby="titolo-case">
+    <div class="expand-frame" data-expand-frame>
+      <img src={photos.giorno.src} alt={photos.giorno.alt} loading="lazy" />
+    </div>
+    <div class="wrap expand-copy" data-expand-copy>
+      <p class="kicker">Il residence</p>
+      <h2 id="titolo-case" class="no-split">Case vacanze con piscina, sul golfo di Policastro</h2>
+      <p class="lede">
+        Trentasei appartamenti arredati intorno alla piscina e al solarium, in una posizione tranquilla e panoramica.
+        Il centro di Praia a Mare e la spiaggia sono a circa 1 km.
+      </p>
+      <p class="actions">
+        <a class="btn" href={paths.residence}>Il residence</a>
+        <a class="btn btn-light" href={paths.apartments}>Gli appartamenti</a>
+      </p>
     </div>
   </section>
 
@@ -132,9 +135,23 @@ const slug = (value: string) => value.toLowerCase().replace(/\s+/g, '-');
     </div>
   </section>
 
-  <section class="section section-mist" aria-labelledby="titolo-praia">
-    <div class="wrap split">
+  <section class="section section-sand" aria-labelledby="titolo-mappa">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="kicker">Piantina</p>
+        <h2 id="titolo-mappa">Il residence, punto per punto</h2>
+        <p class="lede">Tocca i numeri sulla foto per vedere cosa c’è. Con «Il golfo» si passa alla vista dall’alto su Praia a Mare.</p>
+      </header>
       <div class="reveal">
+        <ResidenceMap />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-mist rail-section" aria-labelledby="titolo-praia">
+    <div class="wrap rail-head">
+      <header class="reveal">
+        <p class="kicker">Nei dintorni</p>
         <h2 id="titolo-praia">Praia a Mare e dintorni</h2>
         <div class="prose">
           <p>
@@ -142,22 +159,31 @@ const slug = (value: string) => value.toLowerCase().replace(/\s+/g, '-');
             Dal residence si vede il golfo e, dall’alto, l’Isola Dino.
           </p>
         </div>
-        <p class="actions">
-          <a class="btn btn-sea" href={paths.town}>Cosa vedere</a>
-          <a class="btn btn-ghost" href={paths.activities}>Attività</a>
-        </p>
-      </div>
-      <ul class="town-list reveal">
-        {
-          places.map((place) => (
-            <li>
-              <a href={`${paths.town}#${slug(place.name)}`}>{place.name}</a>
-            </li>
-          ))
-        }
+      </header>
+      <p class="actions reveal">
+        <a class="btn btn-sea" href={paths.town}>Cosa vedere</a>
+        <a class="btn btn-ghost" href={paths.activities}>Attività</a>
+      </p>
+    </div>
+    <PlacesRail />
+  </section>
+
+  <section class="section" aria-labelledby="titolo-blog">
+    <div class="wrap">
+      <header class="section-head section-head-row reveal">
+        <div>
+          <p class="kicker">Diario dal golfo</p>
+          <h2 id="titolo-blog">Dal blog</h2>
+        </div>
+        <a class="btn btn-ghost" href={paths.blog}>Tutti gli articoli</a>
+      </header>
+      <ul class="post-grid three">
+        {posts.slice(0, 3).map((post) => <PostCard post={post} />)}
       </ul>
     </div>
   </section>
+
+  <Faq tag="home" />
 
   <section class="section section-sand" id="preventivo" aria-labelledby="titolo-preventivo">
     <div class="wrap quote-grid">

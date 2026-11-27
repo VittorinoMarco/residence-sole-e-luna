@@ -44,6 +44,12 @@ Pagina unica, https://www.vineyard.co.za/, viewport 1440×900, altezza documento
 - I fondi alternano carta, carta calda e salvia. Nessun fondo scuro tranne il footer.
 - Pulsante principale: terracotta pieno, radius 66px (pillola), padding 0 27px.
 
+## Offerte e blog (misurati il 24/11/2026)
+
+- Offerte: hero su fascia blu-grigio, titolo e testo centrati, poi elenco di schede con foto alta e titolo, che compaiono con traslazione di 40px e opacità.
+- Blog: hero su fascia salvia `#B6C8C0`, elenco di articoli a tutta larghezza (980×842px a 1024) con foto grande.
+- Articolo: fascia azzurra `#CDDBE5`, «Back», chip categoria in terracotta, titolo, data e minuti di lettura, foto, indice dei contenuti, testo, articoli correlati.
+
 # Taste DNA
 
 ### La foto tiene il raggio

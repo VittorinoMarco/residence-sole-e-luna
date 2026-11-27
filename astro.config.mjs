@@ -12,7 +12,6 @@ const redirects = {
   '/residence-calabria-praia-scalea': '/contatti',
   '/residence-calabria-praia-scalea/richiedi-preventivo': '/contatti#preventivo',
   '/residence-calabria-praia-scalea/prenota': '/contatti#preventivo',
-  '/offerte-residence-calabria-praia-scalea': '/',
 };
 
 export default defineConfig({

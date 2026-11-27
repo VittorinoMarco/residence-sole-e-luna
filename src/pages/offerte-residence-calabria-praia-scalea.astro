@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import NextPage from '../components/NextPage.astro';
+import CloseBand from '../components/CloseBand.astro';
+import { offerPeriods } from '../data/offers';
+import { paths, photos } from '../data/site';
+
+const path = paths.offers;
+const now = new Date();
+const periods = offerPeriods.map((period) => ({ ...period, past: new Date(period.until) < now }));
+const hasActive = periods.some((period) => !period.past);
+const euro = (value: number) => `€ ${value}`;
+---
+
+<Base
+  title="Offerte | Residence Soleluna a Praia a Mare"
+  description="Le offerte del Residence Soleluna a Praia a Mare: tariffe settimanali per bilocali e trilocali, con consumi, pulizia, piscina e lido inclusi."
+  path={path}
+>
+  <PageHero
+    title="Le nostre offerte"
+    kicker="Settimane al mare"
+    lede="Tariffe a settimana per bilocali e trilocali, con piscina, lido e tutti i servizi del residence."
+    crumbs={[
+      { href: '/', label: 'Home' },
+      { label: 'Offerte' },
+    ]}
+    photo={photos.piscina}
+    focus="50% 62%"
+  />
+
+  {
+    !hasActive && (
+      <section class="offer-status">
+        <div class="wrap">
+          <p class="reveal">
+            <span class="chip chip-ink">Stagione 2026 conclusa</span>
+            Le tariffe per le prossime date saranno pubblicate qui. Nel frattempo
+            <a href={`${paths.contact}#preventivo`}>scrivici le date</a> e ti rispondiamo con il preventivo.
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    periods.map((period) => (
+      <section class="section offers" aria-labelledby={`offerta-${period.id}`}>
+        <div class="wrap">
+          <header class="offers-head reveal">
+            <p class="kicker">{period.past ? 'Ultima offerta pubblicata' : 'Offerta in corso'}</p>
+            <h2 id={`offerta-${period.id}`}>{period.label}</h2>
+            <p class="lede">{period.note}</p>
+          </header>
+
+          <ul class="offer-grid">
+            {period.offers.map((offer) => (
+              <li class:list={['offer-card', 'reveal', period.past && 'is-past']}>
+                <div class="mask mask-arch">
+                  <img src={offer.photo.src} alt={offer.photo.alt} loading="lazy" />
+                  {period.past && <span class="offer-badge">Terminata</span>}
+                </div>
+                <div class="offer-body">
+                  <p class="beds">{offer.beds}</p>
+                  <h3>{offer.title}</h3>
+                  <p class="offer-price">
+                    <span class="amount">{euro(offer.price)}</span>
+                    <span class="per">a settimana</span>
+                  </p>
+                  <a class="btn btn-ghost" href={`${paths.contact}#preventivo`}>
+                    {period.past ? 'Chiedi le tariffe attuali' : 'Chiedi disponibilità'}
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <div class="offer-included reveal">
+            <h3>Sono inclusi</h3>
+            <ul>
+              {period.included.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <Faq tag="offers" title="Come si prenota" />
+
+  <NextPage to="offers" />
+
+  <CloseBand />
+</Base>

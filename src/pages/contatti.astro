@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import QuoteForm from '../components/QuoteForm.astro';
-import { paths, site } from '../data/site';
+import { paths, photos, site } from '../data/site';
 
 const path = paths.contact;
 const title = 'Contatti e preventivo | Residence Soleluna';
@@ -31,11 +31,12 @@ const jsonLd = {
   <PageHero
     title="Contatti"
     lede="Chiamaci o scrivici per informazioni e per un preventivo."
-    tone="ink"
     crumbs={[
       { href: '/', label: 'Home' },
       { label: 'Contatti' },
     ]}
+    photo={photos.panorama}
+    focus="50% 25%"
   />
 
   <section class="section section-sand" id="preventivo" aria-labelledby="titolo-preventivo">

@@ -1,14 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
+import Faq from '../../components/Faq.astro';
+import NextPage from '../../components/NextPage.astro';
 import CloseBand from '../../components/CloseBand.astro';
 import { nightPool, paths, photos } from '../../data/site';
 
 const path = paths.pool;
-const hero = {
-  src: '/images/piscina/promo-2.jpg',
-  alt: 'Piscina e appartamenti del Residence Soleluna con il monte sullo sfondo',
-};
 ---
 
 <Base
@@ -19,13 +17,13 @@ const hero = {
   <PageHero
     title="Piscina"
     lede="Situata nella parte centrale del residence, è riservata ai soli ospiti. Ha un ampio solarium con chiosco bar, lettini, ombrelloni e docce, oltre a un tavolo da ping-pong e al calcio balilla gratuiti."
-    tone="mist"
     crumbs={[
       { href: '/', label: 'Home' },
       { href: paths.services, label: 'Servizi' },
       { label: 'Piscina' },
     ]}
-    photo={hero}
+    photo={photos.giorno}
+    focus="50% 60%"
   />
 
   <section class="section">
@@ -58,6 +56,10 @@ const hero = {
       </div>
     </div>
   </section>
+
+  <Faq tag="pool" />
+
+  <NextPage to="pool" />
 
   <CloseBand />
 </Base>

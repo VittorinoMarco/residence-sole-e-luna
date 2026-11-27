@@ -8,7 +8,6 @@ let cleanup: (() => void) | undefined;
 function clearMotion() {
   cleanup?.();
   cleanup = undefined;
-  ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 }
 
 export function initHomeMotion() {
@@ -41,6 +40,7 @@ export function initHomeMotion() {
             end: `+=${span}`,
             scrub: true,
             invalidateOnRefresh: true,
+            refreshPriority: 2,
           },
         });
         const keys = [
@@ -111,6 +111,7 @@ export function initHomeMotion() {
             pin: true,
             scrub: 0.5,
             invalidateOnRefresh: true,
+            refreshPriority: 1,
           },
         });
 

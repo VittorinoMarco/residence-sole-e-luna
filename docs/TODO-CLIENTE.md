@@ -46,3 +46,7 @@ Segna `[x]` quando arriva. Incontro: 23/11/2026.
 - [ ] Pagamento (acconto e saldo) e contratto di cessione dei diritti
 - [ ] Fase 2: area admin per i preventivi (preventivo a parte)
 - [ ] Altre lingue, prenotazione online, offerte/blog (sviluppi futuri)
+- [ ] Piantina: i punti (piscina, solarium, appartamenti, parcheggio, serate) sono posizionati a occhio sulla foto aerea. Confermare le posizioni, e dire cosa sono i gazebo bianchi e azzurri accanto alla piscina (animazione, barbecue, altro). Se esiste una planimetria del residence, mandarla: si sostituisce alla foto.
+- [ ] FAQ: le risposte sono prese dal sito attuale; confermare e dire quali altre domande fanno i clienti.
+- [ ] Offerte: le tariffe sul sito attuale sono di giugno 2026 (Bilocale 3/4 posti 450 €, Trilocale 4 posti 500 €, Trilocale 5 posti 550 € a settimana, consumi, pulizia, piscina e lido inclusi) e sono scadute. Mandare le tariffe e le date della prossima stagione: si aggiornano in `src/data/offers.ts`. Foto abbinate alle offerte da confermare.
+- [ ] Blog: i 4 articoli sono bozze scritte con i soli fatti già presenti sul sito attuale (Isola Dino, Arcomagno e Maratea, Diamante, Aieta e Tortora, una giornata al residence). Rivedere, correggere e dire quali altri temi trattare. Date in `src/data/posts.ts`.

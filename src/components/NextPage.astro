@@ -1,0 +1,23 @@
+---
+import { nextPages } from '../data/site';
+
+interface Props {
+  to: keyof typeof nextPages;
+}
+
+const next = nextPages[Astro.props.to];
+---
+
+<section class="next" aria-label="Continua">
+  <a class="next-link" href={next.href}>
+    <div class="wrap next-inner">
+      <div>
+        <p class="kicker">Continua</p>
+        <p class="next-title">{next.label}</p>
+      </div>
+      <div class="mask mask-stadium next-photo no-parallax">
+        <img src={next.photo.src} alt="" loading="lazy" />
+      </div>
+    </div>
+  </a>
+</section>

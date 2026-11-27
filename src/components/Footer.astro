@@ -1,5 +1,5 @@
 ---
-import { nav, site } from '../data/site';
+import { chapters, nav, site } from '../data/site';
 
 interface Props {
   year: number;
@@ -9,6 +9,10 @@ const { year } = Astro.props;
 ---
 
 <footer class="site-footer">
+  <div class="wrap footer-words">
+    <p class="footer-label">Scopri il residence</p>
+    {chapters.map((chapter) => <a href={chapter.href}>{chapter.word}</a>)}
+  </div>
   <div class="wrap footer-grid">
     <div>
       <p class="footer-name">Soleluna</p>
@@ -29,6 +33,7 @@ const { year } = Astro.props;
       <p class="footer-label">Il sito</p>
       <ul class="footer-links">
         {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        <li><a href="/blog">Blog</a></li>
       </ul>
     </div>
     <div>

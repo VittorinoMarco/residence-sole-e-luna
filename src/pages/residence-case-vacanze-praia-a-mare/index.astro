@@ -1,6 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
+import ResidenceMap from '../../components/ResidenceMap.astro';
+import MediaGroup from '../../components/MediaGroup.astro';
+import Faq from '../../components/Faq.astro';
+import NextPage from '../../components/NextPage.astro';
 import CloseBand from '../../components/CloseBand.astro';
 import Icon from '../../components/Icon.astro';
 import { paths, photos } from '../../data/site';
@@ -22,35 +26,36 @@ const services = [
   <PageHero
     title="Il residence"
     lede="Case vacanze con piscina a Praia a Mare, sulla costa tirrenica calabrese, con vista sul golfo di Policastro."
-    tone="mist"
     crumbs={[
       { href: '/', label: 'Home' },
       { label: 'Il residence' },
     ]}
     photo={photos.panorama}
+    focus="50% 40%"
   />
 
   <section class="section">
-    <div class="wrap split">
-      <div class="reveal">
+    <div class="wrap">
+      <div class="section-center reveal">
+        <p class="kicker">Il residence</p>
         <h2>Case vacanze in residence a Praia a Mare</h2>
-        <div class="prose">
-          <p>
-            Il residence di nuova costruzione è a Praia a Mare, rinomata località balneare della costa tirrenica
-            calabrese, a circa 1 km dal centro della cittadina e dall’ampia spiaggia di sabbia e ghiaia.
-          </p>
-          <p>
-            Ha piscina e solarium, ed è in posizione tranquilla e panoramica, con vista sul golfo di Policastro.
-          </p>
-        </div>
+        <p>
+          Il residence di nuova costruzione è a Praia a Mare, rinomata località balneare della costa tirrenica
+          calabrese, a circa 1 km dal centro della cittadina e dall’ampia spiaggia di sabbia e ghiaia. Ha piscina e
+          solarium, ed è in posizione tranquilla e panoramica, con vista sul golfo di Policastro.
+        </p>
         <p class="actions">
           <a class="btn" href={`${paths.contact}#preventivo`}>Richiedi un preventivo</a>
           <a class="btn btn-ghost" href={paths.apartments}>Gli appartamenti</a>
         </p>
       </div>
-      <div class="mask mask-soft reveal">
-        <img src={photos.facciata.src} alt={photos.facciata.alt} loading="lazy" />
-      </div>
+      <MediaGroup
+        photos={[
+          { ...photos.panorama, focus: '30% 60%' },
+          { ...photos.facciata, focus: '50% 40%' },
+          { ...photos.piscina, focus: '50% 70%' },
+        ]}
+      />
     </div>
   </section>
 
@@ -72,6 +77,23 @@ const services = [
       </ul>
     </div>
   </section>
+
+  <section class="section" aria-labelledby="titolo-mappa">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="kicker">Piantina</p>
+        <h2 id="titolo-mappa">Il residence, punto per punto</h2>
+        <p class="lede">Tocca i numeri sulla foto per vedere cosa c’è.</p>
+      </header>
+      <div class="reveal">
+        <ResidenceMap />
+      </div>
+    </div>
+  </section>
+
+  <Faq tag="apartments" />
+
+  <NextPage to="residence" />
 
   <CloseBand />
 </Base>

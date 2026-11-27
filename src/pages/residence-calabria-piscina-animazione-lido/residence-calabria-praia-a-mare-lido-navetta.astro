@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
+import Faq from '../../components/Faq.astro';
+import NextPage from '../../components/NextPage.astro';
 import CloseBand from '../../components/CloseBand.astro';
 import Icon from '../../components/Icon.astro';
 import { paths, photos } from '../../data/site';
@@ -16,13 +18,13 @@ const path = paths.beach;
   <PageHero
     title="Lido e navetta"
     lede="Servizio spiaggia con navetta privata, in convenzione con il lido Point Break, sulla spiaggia di Praia a Mare."
-    tone="mist"
     crumbs={[
       { href: '/', label: 'Home' },
       { href: paths.services, label: 'Servizi' },
       { label: 'Lido e navetta' },
     ]}
     photo={photos.lido}
+    focus="50% 62%"
   />
 
   <section class="section">
@@ -50,6 +52,10 @@ const path = paths.beach;
       </p>
     </div>
   </section>
+
+  <Faq tag="beach" />
+
+  <NextPage to="beach" />
 
   <CloseBand />
 </Base>
