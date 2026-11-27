@@ -7,4 +7,4 @@
 - QA aperti: a metà crossfade la parola di sinistra esce dal bordo (Piscina è più lunga di Meet). Manca la fascia prenotazioni di vineyard: niente punteggio Google. Form senza endpoint. Interni appartamenti assenti sul sito attuale. Foto ospiti non pubblicate.
 - Strumenti esterni usati: nessuno.
 - Guide già lette: siti-web, risparmio-token, taste-design-dna, studio-grade-website, sito-web-workflow, emil-design-eng, frontend-design, motion-scroll-playbook, reanimate.
-- Prossimo passo: revisione di Marco sull’anteprima. Poi i materiali del cliente (foto, testi, recensioni, endpoint).
+- Prossimo passo: anteprima su https://subtle-mediumaquamarine-buffalo-48.hostingersite.com/ con noindex nel codice (`stagingNoindex`). Il dominio del cliente si collega dopo, senza toccare la posta. Poi materiali del cliente.

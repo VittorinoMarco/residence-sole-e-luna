@@ -1,7 +1,8 @@
 import type { APIRoute } from 'astro';
+import { stagingNoindex } from '../data/site';
 
 export const GET: APIRoute = ({ site }) => {
-  const noindex = import.meta.env.NOINDEX === 'true';
+  const noindex = stagingNoindex || import.meta.env.NOINDEX === 'true';
   const body = noindex
     ? 'User-agent: *\nDisallow: /\n'
     : `User-agent: *\nAllow: /\n\nSitemap: ${site}sitemap-index.xml\n`;

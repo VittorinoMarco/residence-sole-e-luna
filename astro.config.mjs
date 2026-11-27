@@ -19,11 +19,6 @@ export default defineConfig({
   trailingSlash: 'never',
   output: 'static',
   integrations: [sitemap()],
-  vite: {
-    define: {
-      'import.meta.env.NOINDEX': JSON.stringify(process.env.NOINDEX ?? ''),
-    },
-  },
   redirects: Object.fromEntries(
     Object.entries(redirects).map(([source, destination]) => [
       source,

@@ -21,6 +21,9 @@ export const site = {
   map: 'https://www.google.com/maps/search/?api=1&query=Via%20G.%20Carducci%2038%2C%2087028%20Praia%20a%20Mare%20CS',
 } as const;
 
+/** Anteprima sul dominio temporaneo. false solo quando si collega il dominio del cliente. */
+export const stagingNoindex = true;
+
 export const nav = [
   { href: '/residence-case-vacanze-praia-a-mare', label: 'Il residence' },
   { href: '/residence-case-vacanze-praia-a-mare/appartamenti-soleluna', label: 'Appartamenti' },
