@@ -1,0 +1,106 @@
+---
+import { reviews, reviewSources } from '../data/reviews';
+
+interface Props {
+  tone?: 'paper' | 'mist' | 'sand';
+}
+
+const { tone = 'mist' } = Astro.props;
+const initial = (name: string) => name.trim().charAt(0).toUpperCase();
+---
+
+<section class:list={['section', 'reviews-section', `section-${tone}`]} aria-labelledby="titolo-recensioni">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <p class="kicker">I nostri ospiti</p>
+      <h2 id="titolo-recensioni">Dicono di noi</h2>
+      <p class="lede">Le parole di chi ha già soggiornato al Soleluna, dalle recensioni su Google e TripAdvisor.</p>
+    </header>
+  </div>
+  <div class="rail" data-rail>
+    <ul class="rail-track review-track" data-rail-track tabindex="0" aria-label="Recensioni degli ospiti">
+      {
+        reviews.map((review) => (
+          <li class="review-card">
+            <span class="review-mark" aria-hidden="true">“</span>
+            <blockquote data-review-text>{review.text}</blockquote>
+            <button class="review-more more" type="button" data-review-more hidden>
+              Leggi tutto<span class="visually-hidden"> la recensione di {review.author}</span>
+            </button>
+            <footer>
+              <span class="review-avatar" aria-hidden="true">{initial(review.author)}</span>
+              <span class="review-who">
+                <strong>{review.author}</strong>
+                <a href={reviewSources[review.source]} target="_blank" rel="noopener noreferrer">
+                  Su {review.source}
+                  <span class="visually-hidden"> (si apre in una nuova scheda)</span>
+                </a>
+              </span>
+            </footer>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="rail-bar">
+      <div class="rail-progress" aria-hidden="true"><span data-rail-progress></span></div>
+      <div class="rail-buttons">
+        <button class="rail-btn" type="button" data-rail-prev aria-label="Recensioni precedenti">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l-6 6 6 6" /></svg>
+        </button>
+        <button class="rail-btn" type="button" data-rail-next aria-label="Recensioni successive">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap review-foot reveal">
+    <p>Leggi tutte le recensioni:</p>
+    <p class="actions">
+      <a class="btn btn-ghost" href={reviewSources.Google} target="_blank" rel="noopener noreferrer">Su Google</a>
+      <a class="btn btn-ghost" href={reviewSources.TripAdvisor} target="_blank" rel="noopener noreferrer">Su TripAdvisor</a>
+    </p>
+  </div>
+</section>
+
+<dialog class="review-dialog" data-review-dialog aria-labelledby="review-dialog-author">
+  <form method="dialog">
+    <button class="review-close" aria-label="Chiudi">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" /></svg>
+    </button>
+  </form>
+  <span class="review-mark" aria-hidden="true">“</span>
+  <p class="review-dialog-text" data-review-dialog-text></p>
+  <p class="review-dialog-who"><strong id="review-dialog-author" data-review-dialog-author></strong> <span data-review-dialog-source></span></p>
+</dialog>
+
+<script>
+  function initReviews() {
+    const dialog = document.querySelector<HTMLDialogElement>('[data-review-dialog]');
+    if (!dialog) return;
+    const text = dialog.querySelector<HTMLElement>('[data-review-dialog-text]')!;
+    const author = dialog.querySelector<HTMLElement>('[data-review-dialog-author]')!;
+    const source = dialog.querySelector<HTMLElement>('[data-review-dialog-source]')!;
+
+    document.querySelectorAll<HTMLElement>('.review-card').forEach((card) => {
+      const quote = card.querySelector<HTMLElement>('[data-review-text]');
+      const button = card.querySelector<HTMLButtonElement>('[data-review-more]');
+      if (!quote || !button || button.dataset.ready) return;
+      button.dataset.ready = 'true';
+      const check = () => {
+        button.hidden = quote.scrollHeight <= quote.clientHeight + 1;
+      };
+      check();
+      window.addEventListener('resize', check);
+      button.addEventListener('click', () => {
+        text.textContent = quote.textContent;
+        author.textContent = card.querySelector('.review-who strong')?.textContent ?? '';
+        source.textContent = `· ${card.querySelector('.review-who a')?.firstChild?.textContent?.trim() ?? ''}`;
+        dialog.showModal();
+      });
+    });
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  }
+  document.addEventListener('astro:page-load', initReviews);
+</script>

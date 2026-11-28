@@ -9,7 +9,7 @@ function initRails() {
     const next = root.querySelector<HTMLButtonElement>('[data-rail-next]');
     if (!track) return;
 
-    const step = () => (track.querySelector<HTMLElement>('.rail-card')?.offsetWidth ?? 320) + 24;
+    const step = () => (track.querySelector<HTMLElement>('.rail-card, .review-card')?.offsetWidth ?? 320) + 24;
     const update = () => {
       const max = track.scrollWidth - track.clientWidth;
       const ratio = max > 0 ? track.scrollLeft / max : 0;

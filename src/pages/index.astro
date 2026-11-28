@@ -5,6 +5,7 @@ import QuoteForm from '../components/QuoteForm.astro';
 import ResidenceMap from '../components/ResidenceMap.astro';
 import PlacesRail from '../components/PlacesRail.astro';
 import Faq from '../components/Faq.astro';
+import Reviews from '../components/Reviews.astro';
 import PostCard from '../components/PostCard.astro';
 import { apartments, chapters, homeIntro, paths, photos, services, site } from '../data/site';
 import { posts } from '../data/posts';
@@ -184,6 +185,8 @@ const jsonLd = {
   </section>
 
   <Faq tag="home" />
+
+  <Reviews tone="mist" />
 
   <section class="section section-sand" id="preventivo" aria-labelledby="titolo-preventivo">
     <div class="wrap quote-grid">

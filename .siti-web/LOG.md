@@ -7,3 +7,4 @@
 2026-11-22 | riferimenti | docs/riferimenti/vineyard.co.za.md | maschera 430px, pillola 40px, una pagina 1440
 2026-11-22 | schede | src/pages/index.astro | via le capsule: schede appartamenti, ospiti, servizi, foto a 16px
 2026-11-27 | hosting | subtle-mediumaquamarine-buffalo-48.hostingersite.com | anteprima Hostinger, dominio cliente non collegato, noindex nel codice
+2026-11-28 | recensioni | src/components/Reviews.astro | Dicono di noi in home e residence, testi dal sito attuale, senza stelle

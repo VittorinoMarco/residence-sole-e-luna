@@ -28,7 +28,7 @@ Segna `[x]` quando arriva. Incontro: 23/11/2026.
 
 ## Emersi costruendo il sito (22/11/2026)
 - [x] Testi di servizi, Praia a Mare, attività e residence: copiati dal sito attuale (22/11). Restano da leggere offerte e campi del form
-- [ ] Consenso a pubblicare le 4 recensioni e i link alle fonti. Per ora la sezione ospiti non è nel sito: si rimette solo con i testi veri
+- [ ] Consenso a pubblicare le 4 recensioni (testi copiati dal sito attuale, in `src/data/reviews.ts`). Sezione «Dicono di noi» rimessa in home e nella pagina residence il 28/11 su richiesta di Marco. Due recensioni citano i titolari per nome (Pierluigi, Emanuele): chiedere ok. I link a Google e TripAdvisor sono ricerche generiche: serve l'URL esatto della scheda
 - [ ] Endpoint che riceve il preventivo (`PUBLIC_QUOTE_ENDPOINT`): oggi il form valida e dice che l’invio non è collegato
 - [ ] Coordinate verificate per incorporare la mappa
 - [ ] URL della pagina Facebook del Lido Point Break
